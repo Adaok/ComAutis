@@ -59,12 +59,4 @@ public class DrawerAdapter extends BaseAdapter {
 
         return layout;
     }
-
-    public List<DrawerItem> getmDrawerItemList() {
-        return mDrawerItemList;
-    }
-
-    public void setmDrawerItemList(List<DrawerItem> mDrawerItemList) {
-        this.mDrawerItemList = mDrawerItemList;
-    }
 }
