@@ -11,6 +11,7 @@ import com.lpiem_lyon1.comautis.Database.Table.PageTable;
 import com.lpiem_lyon1.comautis.Database.Table.PictureTable;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Folder;
+import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Page;
 import com.lpiem_lyon1.comautis.Models.Picture;
 
@@ -342,6 +343,60 @@ public class LocalDataBase implements ILocalDataBase {
             callback.onError(new IllegalArgumentException("childId is null"));
         }
     }
+
+    //endregion
+
+    //region INSERT
+
+    @Override
+    public void insertChild(Child child, RequestCallback callback) {
+        long valueReturn = mSQLiteDatabase.insert(ChildTable.TABLE_NAME, null, new ChildTable().getContentValues(child));
+        if (valueReturn !=  -1){
+            //TODO
+            //callback.onResult();
+        }
+        if (valueReturn == -1){
+            callback.onError(new Error("Creation child failed"));
+        }
+        return;
+    }
+
+    @Override
+    public void insertPicture(Picture picture, RequestCallback callback) {
+        long valueReturn = mSQLiteDatabase.insert(PictureTable.TABLE_NAME, null, new PictureTable().getContentValues(picture));
+        if (valueReturn != -1){
+            //TODO
+            //calback.onResult();
+        }
+        if (valueReturn == -1){
+            callback.onError(new Error("Creation picture failed"));
+        }
+    }
+
+    @Override
+    public void insertFolder(Folder folder, RequestCallback callback) {
+        long valueReturn = mSQLiteDatabase.insert(FolderTable.TABLE_NAME, null, new FolderTable().getContentValues(folder));
+        if (valueReturn != -1){
+            //TODO
+            //callback.onResult();
+        }
+        if (valueReturn == -1){
+            callback.onError(new Error("Creation folder failed"));
+        }
+    }
+
+    @Override
+    public void insertPage(Page page, RequestCallback callback) {
+        long valueReturn = mSQLiteDatabase.insert(PageTable.TABLE_NAME, null, new PageTable().getContentValues(page));
+        if (valueReturn != -1){
+            //TODO
+            //callback.onResult();
+        }
+        if (valueReturn == -1){
+            callback.onError(new Error("Creation page failed"));
+        }
+    }
+
 
     //endregion
 }
