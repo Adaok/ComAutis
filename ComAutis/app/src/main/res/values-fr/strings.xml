@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ComAutis</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+<!-- Drawer items -->
+    <string name="child_list">Liste des enfants</string>
+    <string name="library">Bibliothèque</string>
+</resources>
