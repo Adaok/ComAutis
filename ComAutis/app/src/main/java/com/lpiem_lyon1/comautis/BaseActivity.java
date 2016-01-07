@@ -39,7 +39,5 @@ public class BaseActivity extends AppCompatActivity {
         //init list view with menu items
         DrawerAdapter drawerAdapter = new DrawerAdapter(mContext , mDrawerItemList);
         mDrawerListView.setAdapter(drawerAdapter);
-
-
     }
 }
