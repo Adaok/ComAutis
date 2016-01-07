@@ -1,22 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout
-    android:id="@+id/drawer_layout"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <FrameLayout
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fitsSystemWindows="true"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
 
-    <ListView android:id="@+id/list_view_drawer"
+            android:background="@color/black"/>
+        <FrameLayout
+            android:id="@+id/activity_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <ListView
+        android:id="@+id/navigationView"
         android:layout_width="@dimen/drawer_width"
+        android:fitsSystemWindows="true"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:choiceMode="singleChoice"
         android:background="@color/greyLight"/>
-
 </android.support.v4.widget.DrawerLayout>
-

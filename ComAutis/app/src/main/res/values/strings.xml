@@ -6,7 +6,8 @@
     <!-- Drawer Items -->
     <string name="child_list">Child list</string>
     <string name="library">Library</string>
-
+    <string name="nav_drawer_opened">drawer opened</string>
+    <string name="nav_drawer_closed">drawer closed</string>
 
 
 </resources>
