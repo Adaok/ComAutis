@@ -2,14 +2,11 @@ package com.lpiem_lyon1.comautis;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.widget.ListView;
 
 import com.lpiem_lyon1.comautis.Adapters.DrawerAdapter;
+import com.lpiem_lyon1.comautis.Models.DrawerItem;
 
 import java.util.ArrayList;
 import java.util.List;

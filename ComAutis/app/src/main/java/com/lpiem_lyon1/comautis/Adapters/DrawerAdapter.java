@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.lpiem_lyon1.comautis.DrawerItem;
+import com.lpiem_lyon1.comautis.Models.DrawerItem;
 import com.lpiem_lyon1.comautis.R;
 
 import java.util.List;

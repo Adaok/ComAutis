@@ -1,4 +1,4 @@
-package com.lpiem_lyon1.comautis;
+package com.lpiem_lyon1.comautis.Models;
 
 /**
  * Created by marcoloiodice on 06/01/2016.
