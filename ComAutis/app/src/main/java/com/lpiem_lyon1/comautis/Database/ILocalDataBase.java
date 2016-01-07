@@ -16,6 +16,8 @@ public interface ILocalDataBase {
     void requestChildByName(String name, RequestCallback callback);
 
     void insertChild(Child child, RequestCallback callback);
+
+    void deleteChildById(String id, RequestCallback callback);
     //endregion
 
     //region PICTURE
@@ -25,6 +27,8 @@ public interface ILocalDataBase {
     void requestPictureByFolder(String folderId, RequestCallback callback);
 
     void insertPicture(Picture picture, RequestCallback callback);
+
+    void deletePictureById(String id, RequestCallback callback);
     //endregion
 
     //region Folder
@@ -34,6 +38,8 @@ public interface ILocalDataBase {
     void requestFolderByFolder(String folderId, RequestCallback callback);
 
     void insertFolder(Folder folder, RequestCallback callback);
+
+    void deleteFolderById(String id, RequestCallback callback);
     //endregion
 
     //region Page
@@ -43,5 +49,7 @@ public interface ILocalDataBase {
     void requestPageByChild(String childId, RequestCallback callback);
 
     void insertPage(Page page, RequestCallback callback);
+
+    void deletePageById(String id, RequestCallback callback);
     //endregion
 }

@@ -355,7 +355,7 @@ public class LocalDataBase implements ILocalDataBase {
             //TODO
             //callback.onResult();
         }
-        if (valueReturn == -1){
+        else {
             callback.onError(new Error("Creation child failed"));
         }
         return;
@@ -368,7 +368,7 @@ public class LocalDataBase implements ILocalDataBase {
             //TODO
             //calback.onResult();
         }
-        if (valueReturn == -1){
+        else {
             callback.onError(new Error("Creation picture failed"));
         }
     }
@@ -380,7 +380,7 @@ public class LocalDataBase implements ILocalDataBase {
             //TODO
             //callback.onResult();
         }
-        if (valueReturn == -1){
+        else {
             callback.onError(new Error("Creation folder failed"));
         }
     }
@@ -392,9 +392,63 @@ public class LocalDataBase implements ILocalDataBase {
             //TODO
             //callback.onResult();
         }
-        if (valueReturn == -1){
+        else {
             callback.onError(new Error("Creation page failed"));
         }
+    }
+
+    //endregion
+
+    //region DELETE
+
+    @Override
+    public void deleteChildById(String id, RequestCallback callback) {
+        int valueReturn = mSQLiteDatabase.delete(ChildTable.TABLE_NAME, ChildTable.KEY_ID + "=?", new String[]{id});
+        if (valueReturn != 0){
+            //TODO
+            //callback.onResult();
+        }
+        else {
+            callback.onError(new Error("Child not deleted, fail"));
+        }
+    }
+
+    @Override
+    public void deletePictureById(String id, RequestCallback callback) {
+        int valueReturn = mSQLiteDatabase.delete(PictureTable.TABLE_NAME, PictureTable.KEY_ID + "=?", new String[]{id});
+        if (valueReturn != 0){
+            //TODO
+            //callback.onResult();
+        }
+        else {
+            callback.onError(new Error("Picture not deleted, fail"));
+        }
+    }
+
+    @Override
+    public void deleteFolderById(String id, RequestCallback callback) {
+        int valueReturn = mSQLiteDatabase.delete(FolderTable.TABLE_NAME, FolderTable.KEY_ID + "=?", new String[]{id});
+        if (valueReturn != 0){
+            //TODO
+            //callback.onResult();
+        }
+        else {
+            callback.onError(new Error("Folder not deleted, fail"));
+        }
+
+    }
+
+    @Override
+    public void deletePageById(String id, RequestCallback callback) {
+        int valueReturn = mSQLiteDatabase.delete(PageTable.TABLE_NAME, PageTable.KEY_ID + "=?", new String[]{id});
+        if (valueReturn != 0){
+            //TODO
+            //callback.onResult();
+        }
+        else {
+            callback.onError(new Error("Page not deleted, fail"));
+        }
+
     }
 
 
