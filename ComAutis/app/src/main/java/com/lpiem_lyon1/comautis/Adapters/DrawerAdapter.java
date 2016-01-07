@@ -54,8 +54,8 @@ public class DrawerAdapter extends BaseAdapter {
         TextView textViewItemName = (TextView) layout.findViewById(R.id.tv_drawer_item);
         ImageView iconViewTtem = (ImageView) layout.findViewById(R.id.icon_drawer_item);
 
-        textViewItemName.setText(mDrawerItemList.get(position).getmName());
-        iconViewTtem.setImageResource(mDrawerItemList.get(position).getmIconId());
+        textViewItemName.setText(mDrawerItemList.get(position).getName());
+        iconViewTtem.setImageResource(mDrawerItemList.get(position).getIconId());
 
         return layout;
     }
