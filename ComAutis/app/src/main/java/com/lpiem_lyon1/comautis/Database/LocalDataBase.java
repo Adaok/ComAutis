@@ -435,7 +435,6 @@ public class LocalDataBase implements ILocalDataBase {
         else {
             callback.onError(new Error("Folder not deleted, fail"));
         }
-
     }
 
     @Override
@@ -448,7 +447,6 @@ public class LocalDataBase implements ILocalDataBase {
         else {
             callback.onError(new Error("Page not deleted, fail"));
         }
-
     }
 
 
