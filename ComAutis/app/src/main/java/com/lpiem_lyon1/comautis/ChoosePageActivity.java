@@ -2,6 +2,7 @@ package com.lpiem_lyon1.comautis;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -110,10 +111,15 @@ public class ChoosePageActivity extends BaseActivity {
             }
         });
 
-
         //init list view with list pages items
         ListPageAdapter listPageAdapter = new ListPageAdapter(mListPage, getBaseContext());
         mPageListView.setAdapter(listPageAdapter);
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intentListChild = new Intent(getBaseContext(), ChooseChildActivity.class);
+        startActivity(intentListChild);
+    }
 }
