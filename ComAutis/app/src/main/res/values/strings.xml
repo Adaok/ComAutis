@@ -8,10 +8,14 @@
     <string name="library">Library</string>
     <string name="nav_drawer_opened">drawer opened</string>
     <string name="nav_drawer_closed">drawer closed</string>
-    <string name="title_activity_button_example">buttonExampleActivity</string>
+
+
+    <!-- Child List Activity and his dialog -->
     <string name="child_name_information">Child name</string>
     <string name="btn_alert_dialog">Add a photo</string>
     <string name="tv_header_ad_add_child">Add a new child</string>
+    <string name="btn_ad_positive">Ok</string>
+    <string name="btn_ad_negative">Cancel</string>
 
 
 </resources>

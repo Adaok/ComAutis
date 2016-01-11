@@ -1,18 +1,19 @@
 package com.lpiem_lyon1.comautis;
 
 import android.app.AlertDialog;
-import android.app.AlertDialog.Builder;
-import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lpiem_lyon1.comautis.Adapters.ListChildAdapter;
+import com.lpiem_lyon1.comautis.Database.LocalDataBase;
+import com.lpiem_lyon1.comautis.Database.SQLDataBase;
 import com.lpiem_lyon1.comautis.Models.Child;
 
 import java.util.ArrayList;
@@ -21,6 +22,9 @@ import java.util.List;
 public class ChooseChildActivity extends BaseActivity {
 
     private ListView mChildListView;
+    SQLDataBase myDB;
+    private SQLiteDatabase mDBLite;
+    private SharedPreferences mSharedPref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,13 @@ public class ChooseChildActivity extends BaseActivity {
         setContentView(R.layout.activity_choose_child);
 
         mChildListView = (ListView) findViewById(R.id.lv_child);
+
+
+        //mDBLite = new SQLiteDatabase();
+
+        //myDB = new SQLDataBase(getApplicationContext());
+        //myDB.onCreate(mDBLite);
+        //final LocalDataBase myLocDB = new LocalDataBase(mDBLite,mSharedPref);
 
         //init list child item
         List<Child> mChildItemList = new ArrayList<>();
@@ -55,18 +66,27 @@ public class ChooseChildActivity extends BaseActivity {
 
                 //Setting Buttons Yes or No
                 // Setting Positive "Yes" Button
-                mBuilder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+                mBuilder.setPositiveButton(R.string.btn_ad_positive, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // User pressed YES button.
-                        //TODO
-                        //Call InsertChild()
-                        Toast.makeText(getApplicationContext(), "Child created",
-                                Toast.LENGTH_SHORT).show();
+                        String nameChild = String.valueOf(R.id.et_ad_child_name);
+                        if (nameChild != null && nameChild.isEmpty()) {
+                            //TODO
+                            Child myChild = new Child();
+                            myChild.setName(nameChild);
+                            //myLocDB.insertChild(myChild, null);
+                            //FIN DE TEST
+                            Toast.makeText(getApplicationContext(), "Child created",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Retry and please give a name",
+                                    Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
-
                 // Setting Negative "NO" Button
-                mBuilder.setNegativeButton("CANCELLED", new DialogInterface.OnClickListener() {
+                mBuilder.setNegativeButton(R.string.btn_ad_negative, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // User pressed No button.
                         Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();

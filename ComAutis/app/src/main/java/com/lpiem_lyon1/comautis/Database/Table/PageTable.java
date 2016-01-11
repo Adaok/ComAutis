@@ -39,10 +39,10 @@ public class PageTable extends AbstractTable<Page> {
     /**
      * The creation SQLite command of {@link Page}
      */
-    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" +
+    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
             KEY_ID + TYPE_SMALLTEXT + PRIMARY + ", " +
             KEY_NAME + TYPE_TEXT + ", " +
-            KEY_IS_FAVORITE + TYPE_BOOLEAN +
+            KEY_IS_FAVORITE + TYPE_BOOLEAN + ", " +
             KEY_CHILD_ID + TYPE_SMALLTEXT + ")";
 
     @Override

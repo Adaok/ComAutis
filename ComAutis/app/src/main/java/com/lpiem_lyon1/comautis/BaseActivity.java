@@ -1,6 +1,8 @@
 package com.lpiem_lyon1.comautis;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.lpiem_lyon1.comautis.Adapters.DrawerAdapter;
+import com.lpiem_lyon1.comautis.Database.SQLDataBase;
 import com.lpiem_lyon1.comautis.Models.DrawerItem;
 import com.lpiem_lyon1.comautis.R;
 
@@ -27,6 +30,17 @@ public class BaseActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
     private int selectedNavItemId;
+    private SQLDataBase myDB;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        SQLiteDatabase mComAutisDB = openOrCreateDatabase("ComAutisDB",MODE_PRIVATE,null);
+
+        myDB = new SQLDataBase(getApplicationContext());
+        myDB.onCreate(mComAutisDB);
+    }
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
