@@ -2,12 +2,8 @@ package com.lpiem_lyon1.comautis;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -15,14 +11,11 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lpiem_lyon1.comautis.Adapters.ListChildAdapter;
-import com.lpiem_lyon1.comautis.Database.LocalDataBase;
 import com.lpiem_lyon1.comautis.Database.RequestCallback;
-import com.lpiem_lyon1.comautis.Database.SQLDataBase;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Model;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class ChooseChildActivity extends BaseActivity {
@@ -36,13 +29,6 @@ public class ChooseChildActivity extends BaseActivity {
         setContentView(R.layout.activity_choose_child);
 
         mChildListView = (ListView) findViewById(R.id.lv_child);
-
-
-        //mDBLite = new SQLiteDatabase();
-
-        //myDB = new SQLDataBase(getApplicationContext());
-        //myDB.onCreate(mDBLite);
-        //final LocalDataBase myLocDB = new LocalDataBase(mDBLite,mSharedPref);
 
         //init list child item
         loadChild();
@@ -73,12 +59,8 @@ public class ChooseChildActivity extends BaseActivity {
                         if (nameChild != null && !nameChild.isEmpty()) {
                             //TODO
                             Child myChild = new Child();
-                            //Long tsLong = System.currentTimeMillis()/1000;
-                            //String ts = tsLong.toString();
-                            //myChild.setId(ts);
                             myChild.setName(nameChild);
                             mLocalDb.insertChild(myChild, null);
-                            //FIN DE TEST
                             Toast.makeText(getApplicationContext(), "Child created",
                                     Toast.LENGTH_SHORT).show();
                             loadChild();
