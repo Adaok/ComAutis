@@ -2,10 +2,12 @@ package com.lpiem_lyon1.comautis;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -19,9 +21,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseChildActivity extends BaseActivity {
+    public static final String EXTRA_CHILD_ID = "child_id";
 
     private ListView mChildListView;
-    EditText etNameChild;
+    private EditText etNameChild;
+    private List<Child> mListChild = new ArrayList<Child>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +37,15 @@ public class ChooseChildActivity extends BaseActivity {
 
         //init list child item
         loadChild();
+
+        mChildListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intentName = new Intent(getBaseContext(), ChoosePageActivity.class);
+                intentName.putExtra(EXTRA_CHILD_ID, mListChild.get(position).getId());
+                startActivity(intentName);
+            }
+        });
 
         FloatingActionButton fabAddChild = (FloatingActionButton) findViewById(R.id.btn_add_child);
         fabAddChild.setOnClickListener(new View.OnClickListener() {
@@ -85,12 +99,11 @@ public class ChooseChildActivity extends BaseActivity {
     }
 
     private void loadChild(){
-        final List<Child> listChild = new ArrayList<Child>();
         mLocalDb.requestChild(new RequestCallback() {
             @Override
             public void onResult(List<? extends Model> entities) {
                 for (int i = 0; i < entities.size(); i++) {
-                    listChild.add((Child) entities.get(i));
+                    mListChild.add((Child) entities.get(i));
                 }
             }
 
@@ -102,7 +115,7 @@ public class ChooseChildActivity extends BaseActivity {
 
 
         //init list view with list child items
-        ListChildAdapter listChildAdapter = new ListChildAdapter(listChild, getBaseContext());
+        ListChildAdapter listChildAdapter = new ListChildAdapter(mListChild, getBaseContext());
         mChildListView.setAdapter(listChildAdapter);
     }
 

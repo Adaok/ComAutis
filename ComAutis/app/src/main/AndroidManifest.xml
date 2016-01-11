@@ -21,6 +21,10 @@
         <activity
             android:name=".BaseActivity"
             android:label="@string/title_activity_base"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".ChoosePageActivity"
+            android:label="@string/title_activity_choose_page"
             android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 

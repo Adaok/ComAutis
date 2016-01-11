@@ -98,18 +98,18 @@ public class LocalDataBase implements ILocalDataBase {
     @Override
     public void requestPicture(RequestCallback callback) {
         Cursor cursor = mSQLiteDatabase.query(PictureTable.TABLE_NAME, null, null, null, null, null, null, null);
-        List<Picture> PictureList = new ArrayList<>();
+        List<Picture> pictureList = new ArrayList<>();
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                Picture picture = new PictureTable().fromCursor(cursor);
-                PictureList.add(picture);
-                cursor.close();
-                return;
+                PictureTable pictureTable = new PictureTable();
+                do {
+                    pictureList.add(pictureTable.fromCursor(cursor));
+                } while (cursor.moveToNext());
             }
         }
         cursor.close();
         if (callback != null)
-            callback.onResult(PictureList);
+            callback.onResult(pictureList);
     }
 
     @Override
@@ -264,18 +264,18 @@ public class LocalDataBase implements ILocalDataBase {
     @Override
     public void requestPage(RequestCallback callback) {
         Cursor cursor = mSQLiteDatabase.query(PageTable.TABLE_NAME, null, null, null, null, null, null, null);
-        List<Page> PageList = new ArrayList<>();
+        List<Page> pageList = new ArrayList<>();
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                Page page = new PageTable().fromCursor(cursor);
-                PageList.add(page);
-                cursor.close();
-                return;
+                PageTable pageTable = new PageTable();
+                do {
+                    pageList.add(pageTable.fromCursor(cursor));
+                } while (cursor.moveToNext());
             }
         }
         cursor.close();
         if (callback != null)
-            callback.onResult(PageList);
+            callback.onResult(pageList);
     }
 
     @Override
@@ -285,10 +285,10 @@ public class LocalDataBase implements ILocalDataBase {
             List<Page> pageList = new ArrayList<>();
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
-                    Page page = new PageTable().fromCursor(cursor);
-                    pageList.add(page);
-                    cursor.close();
-                    return;
+                    PageTable pageTable = new PageTable();
+                    do {
+                        pageList.add(pageTable.fromCursor(cursor));
+                    } while (cursor.moveToNext());
                 }
             }
             cursor.close();
@@ -307,10 +307,10 @@ public class LocalDataBase implements ILocalDataBase {
             List<Page> pageList = new ArrayList<>();
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
-                    Page page = new PageTable().fromCursor(cursor);
-                    pageList.add(page);
-                    cursor.close();
-                    return;
+                    PageTable pageTable = new PageTable();
+                    do {
+                        pageList.add(pageTable.fromCursor(cursor));
+                    } while (cursor.moveToNext());
                 }
             }
             cursor.close();
@@ -329,10 +329,10 @@ public class LocalDataBase implements ILocalDataBase {
             List<Page> pageList = new ArrayList<>();
             if (cursor != null) {
                 if (cursor.moveToFirst()) {
-                    Page page = new PageTable().fromCursor(cursor);
-                    pageList.add(page);
-                    cursor.close();
-                    return;
+                    PageTable pageTable = new PageTable();
+                    do {
+                        pageList.add(pageTable.fromCursor(cursor));
+                    } while (cursor.moveToNext());
                 }
             }
             cursor.close();
