@@ -19,18 +19,18 @@ public class PagePictureTable {
     /**
      * Represents the unique Id of a {@link Page}
      */
-    public static final String KEY_PAGE_ID = "id";
+    public static final String KEY_PAGE_ID = "id_page";
 
     /**
      * Represents the unique Id of a {@link Picture}
      */
-    public static final String KEY_PICTURE_ID = "id";
+    public static final String KEY_PICTURE_ID = "id_picture";
 
     /**
      * The creation SQLite command of the association table
 
      */
-    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" +
+    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
             KEY_PAGE_ID + AbstractTable.TYPE_TEXT + ", " +
             KEY_PICTURE_ID + AbstractTable.TYPE_TEXT + ")";
 }

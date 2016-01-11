@@ -40,10 +40,10 @@ public class LocalDataBase implements ILocalDataBase {
         List<Child> childList = new ArrayList<>();
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                Child child = new ChildTable().fromCursor(cursor);
-                childList.add(child);
-                cursor.close();
-                return;
+                ChildTable childTable = new ChildTable();
+                do {
+                    childList.add(childTable.fromCursor(cursor));
+                } while (cursor.moveToNext());
             }
         }
         cursor.close();

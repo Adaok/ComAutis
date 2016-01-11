@@ -6,4 +6,14 @@
 <!-- Drawer items -->
     <string name="child_list">Liste des enfants</string>
     <string name="library">Bibliothèque</string>
+    <string name="nav_drawer_opened">menu ouvert</string>
+    <string name="nav_drawer_closed">menu fermé</string>
+
+    <!-- Child List Activity and his dialog -->
+    <string name="child_name_information">Prénom de l\'enfant</string>
+    <string name="btn_alert_dialog">Ajouter une photo</string>
+    <string name="tv_header_ad_add_child">Ajouter un nouvel enfant</string>
+    <string name="btn_ad_positive">Ok</string>
+    <string name="btn_ad_negative">Annuler</string>
+
 </resources>

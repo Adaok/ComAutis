@@ -45,11 +45,11 @@ public class ChildTable extends AbstractTable<Child> {
     /**
      * The creation SQLite command of {@link Child}
      */
-    public static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + "(" +
-            KEY_ID + TYPE_SMALLTEXT + PRIMARY + ", " +
+    public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
+            KEY_ID + " integer primary key autoincrement," +
             KEY_NAME + TYPE_TEXT + ", " +
             KEY_PICTURE_PATH + TYPE_TEXT + ", " +
-            KEY_IS_FAVORITE + TYPE_BOOLEAN +  "DEFAULT 0 , " +
+            KEY_IS_FAVORITE + TYPE_BOOLEAN +  " DEFAULT 0 , " +
             KEY_FOLDER + TYPE_SMALLTEXT + ")";
 
     @Override
