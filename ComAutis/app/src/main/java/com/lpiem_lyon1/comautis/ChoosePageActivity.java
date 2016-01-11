@@ -98,6 +98,7 @@ public class ChoosePageActivity extends BaseActivity {
         mLocalDb.requestPageByChild(childId,new RequestCallback() {
             @Override
             public void onResult(List<? extends Model> entities) {
+                mListPage.clear();
                 for (int i = 0; i < entities.size(); i++) {
                     mListPage.add((Page) entities.get(i));
                 }

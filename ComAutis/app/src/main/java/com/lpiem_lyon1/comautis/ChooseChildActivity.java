@@ -3,6 +3,7 @@ package com.lpiem_lyon1.comautis;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -102,6 +103,7 @@ public class ChooseChildActivity extends BaseActivity {
         mLocalDb.requestChild(new RequestCallback() {
             @Override
             public void onResult(List<? extends Model> entities) {
+                mListChild.clear();
                 for (int i = 0; i < entities.size(); i++) {
                     mListChild.add((Child) entities.get(i));
                 }
@@ -113,7 +115,6 @@ public class ChooseChildActivity extends BaseActivity {
             }
         });
 
-
         //init list view with list child items
         ListChildAdapter listChildAdapter = new ListChildAdapter(mListChild, getBaseContext());
         mChildListView.setAdapter(listChildAdapter);
@@ -121,7 +122,9 @@ public class ChooseChildActivity extends BaseActivity {
 
     @Override
     protected void onPause() {
+
         super.onPause();
         finish();
     }
+
 }
