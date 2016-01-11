@@ -89,8 +89,8 @@ public class ChooseChildActivity extends BaseActivity {
         mLocalDb.requestChild(new RequestCallback() {
             @Override
             public void onResult(List<? extends Model> entities) {
-                for(int i = 0 ; i < entities.size(); i++){
-                    listChild.add((Child)entities.get(i));
+                for (int i = 0; i < entities.size(); i++) {
+                    listChild.add((Child) entities.get(i));
                 }
             }
 
@@ -104,5 +104,11 @@ public class ChooseChildActivity extends BaseActivity {
         //init list view with list child items
         ListChildAdapter listChildAdapter = new ListChildAdapter(listChild, getBaseContext());
         mChildListView.setAdapter(listChildAdapter);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

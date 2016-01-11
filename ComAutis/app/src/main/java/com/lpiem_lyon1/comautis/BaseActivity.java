@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.FrameLayout;
 import android.widget.ListView;
 
@@ -75,6 +76,16 @@ public class BaseActivity extends AppCompatActivity {
         //init list view with menu items
         DrawerAdapter drawerAdapter = new DrawerAdapter(getBaseContext() , mDrawerItemList);
         navigationView.setAdapter(drawerAdapter);
+
+        navigationView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0){
+                    Intent intent = new Intent(getBaseContext(),ChooseChildActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
 
         if (useToolbar())
         {
