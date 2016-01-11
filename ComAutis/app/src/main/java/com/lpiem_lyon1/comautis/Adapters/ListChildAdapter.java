@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lpiem_lyon1.comautis.Models.Child;
@@ -44,11 +45,11 @@ public class ListChildAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout layout;
+        RelativeLayout layout;
         if (convertView == null){
-            layout = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.choose_child_item_row, null);
+            layout = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.choose_child_item_row, null);
         }else {
-            layout = (LinearLayout)convertView;
+            layout = (RelativeLayout)convertView;
         }
 
         TextView textViewNameChild = (TextView) layout.findViewById(R.id.tv_child_list_item);

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ComAutis</string>
+    <string name="title_activity_base">BaseActivity</string>
+
+    <!-- Drawer items -->
+    <string name="child_list">Lista dei bambini</string>
+    <string name="library">Biblioteca</string>
+    <string name="nav_drawer_opened">menu apperto</string>
+    <string name="nav_drawer_closed">menu chiuso</string>
+
+    <!-- Child List Activity and his dialog -->
+    <string name="child_name_information">Nome del bambino</string>
+    <string name="btn_alert_dialog">Aggiungere un foto</string>
+    <string name="tv_header_ad_add_child">Aggiungere un nuovo bambino</string>
+    <string name="btn_ad_positive">Ok</string>
+    <string name="btn_ad_negative">Cancellare</string>
+
+</resources>

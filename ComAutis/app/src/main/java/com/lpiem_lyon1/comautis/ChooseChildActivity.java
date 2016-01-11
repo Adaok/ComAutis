@@ -5,26 +5,30 @@ import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
 import com.lpiem_lyon1.comautis.Adapters.ListChildAdapter;
 import com.lpiem_lyon1.comautis.Database.LocalDataBase;
+import com.lpiem_lyon1.comautis.Database.RequestCallback;
 import com.lpiem_lyon1.comautis.Database.SQLDataBase;
 import com.lpiem_lyon1.comautis.Models.Child;
+import com.lpiem_lyon1.comautis.Models.Model;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ChooseChildActivity extends BaseActivity {
 
     private ListView mChildListView;
-    SQLDataBase myDB;
-    private SQLiteDatabase mDBLite;
-    private SharedPreferences mSharedPref;
+    EditText etNameChild;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,13 +45,7 @@ public class ChooseChildActivity extends BaseActivity {
         //final LocalDataBase myLocDB = new LocalDataBase(mDBLite,mSharedPref);
 
         //init list child item
-        List<Child> mChildItemList = new ArrayList<>();
-
-
-        //init list view with list child items
-        ListChildAdapter listChildAdapter = new ListChildAdapter(mChildItemList, getBaseContext());
-        mChildListView.setAdapter(listChildAdapter);
-
+        loadChild();
 
         FloatingActionButton fabAddChild = (FloatingActionButton) findViewById(R.id.btn_add_child);
         fabAddChild.setOnClickListener(new View.OnClickListener() {
@@ -63,23 +61,28 @@ public class ChooseChildActivity extends BaseActivity {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(ChooseChildActivity.this);
                 //Associate the view to the builder
                 mBuilder.setView(dialogAddLayout);
+                etNameChild = (EditText)dialogAddLayout.findViewById(R.id.et_ad_child_name);
 
                 //Setting Buttons Yes or No
                 // Setting Positive "Yes" Button
                 mBuilder.setPositiveButton(R.string.btn_ad_positive, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // User pressed YES button.
-                        String nameChild = String.valueOf(R.id.et_ad_child_name);
-                        if (nameChild != null && nameChild.isEmpty()) {
+                        String nameChild = etNameChild.getText().toString();
+
+                        if (nameChild != null && !nameChild.isEmpty()) {
                             //TODO
                             Child myChild = new Child();
+                            //Long tsLong = System.currentTimeMillis()/1000;
+                            //String ts = tsLong.toString();
+                            //myChild.setId(ts);
                             myChild.setName(nameChild);
-                            //myLocDB.insertChild(myChild, null);
+                            mLocalDb.insertChild(myChild, null);
                             //FIN DE TEST
                             Toast.makeText(getApplicationContext(), "Child created",
                                     Toast.LENGTH_SHORT).show();
-                        }
-                        else {
+                            loadChild();
+                        } else {
                             Toast.makeText(getApplicationContext(), "Retry and please give a name",
                                     Toast.LENGTH_SHORT).show();
                         }
@@ -97,5 +100,27 @@ public class ChooseChildActivity extends BaseActivity {
                 AlertDialog alertDialogCreateChild = mBuilder.show();
             }
         });
+    }
+
+    private void loadChild(){
+        final List<Child> listChild = new ArrayList<Child>();
+        mLocalDb.requestChild(new RequestCallback() {
+            @Override
+            public void onResult(List<? extends Model> entities) {
+                for(int i = 0 ; i < entities.size(); i++){
+                    listChild.add((Child)entities.get(i));
+                }
+            }
+
+            @Override
+            public void onError(Throwable error) {
+
+            }
+        });
+
+
+        //init list view with list child items
+        ListChildAdapter listChildAdapter = new ListChildAdapter(listChild, getBaseContext());
+        mChildListView.setAdapter(listChildAdapter);
     }
 }

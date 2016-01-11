@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.lpiem_lyon1.comautis.Adapters.DrawerAdapter;
+import com.lpiem_lyon1.comautis.Database.LocalDataBase;
 import com.lpiem_lyon1.comautis.Database.SQLDataBase;
 import com.lpiem_lyon1.comautis.Models.DrawerItem;
 import com.lpiem_lyon1.comautis.R;
@@ -30,7 +31,8 @@ public class BaseActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private ActionBarDrawerToggle drawerToggle;
     private int selectedNavItemId;
-    private SQLDataBase myDB;
+    protected SQLDataBase myDB;
+    protected LocalDataBase mLocalDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +42,8 @@ public class BaseActivity extends AppCompatActivity {
 
         myDB = new SQLDataBase(getApplicationContext());
         myDB.onCreate(mComAutisDB);
+
+        mLocalDb = new LocalDataBase(mComAutisDB,null);
     }
 
     @Override
