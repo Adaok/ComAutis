@@ -27,7 +27,10 @@
             android:name=".ChoosePageActivity"
             android:label="@string/title_activity_choose_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".ChoosePictureActivity"></activity>
+        <activity android:name=".ChoosePictureActivity"
+                  android:theme="@style/AppTheme.NoActionBar"/>
     </application>
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
 </manifest>
