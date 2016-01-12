@@ -50,21 +50,64 @@ public class ChooseChildActivity extends BaseActivity {
             }
         });
 
+        //long click for delete request
+        mChildListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, final int position, long id) {
+
+                //Get layout inflater for dialog for delete child
+                LayoutInflater inflaterDeleteChild = getLayoutInflater();
+
+                //Associate view to the layout modal dialog
+                View dialogDeleteLayout = inflaterDeleteChild.inflate(R.layout.dialog_delete_child, null);
+                //Create a builder for the dialog
+                AlertDialog.Builder mDeleteBuilder = new AlertDialog.Builder(ChooseChildActivity.this);
+                //Associate the view to the builder
+                mDeleteBuilder.setView(dialogDeleteLayout);
+
+                //Setting Buttons Yes or No
+                // Setting Positive "Yes" Button
+                mDeleteBuilder.setPositiveButton(R.string.btn_ad_positive, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User pressed YES button.
+                            //TODO
+                            String idChildTarget = mListChild.get(position).getId();
+                            mLocalDb.deleteChildById(idChildTarget, null);
+                            Toast.makeText(getApplicationContext(), "Child deleted",
+                                    Toast.LENGTH_SHORT).show();
+                            loadChild();
+                    }
+                });
+                // Setting Negative "NO" Button
+                mDeleteBuilder.setNegativeButton(R.string.btn_ad_negative, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        // User pressed No button.
+                        Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                //Creation AlertDialog and associate to the builder showed.
+                AlertDialog alertDialogDeleteChild = mDeleteBuilder.show();
+
+                return false;
+            }
+        });
+
         FloatingActionButton fabAddChild = (FloatingActionButton) findViewById(R.id.btn_add_child);
         fabAddChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
                 // Get the layout inflater
-                LayoutInflater inflater = getLayoutInflater();
+                LayoutInflater inflaterAddChild = getLayoutInflater();
 
                 //Associate view to layout modal dialog
-                View dialogAddLayout = inflater.inflate(R.layout.dialog_add_child, null);
+                View dialogAddLayout = inflaterAddChild.inflate(R.layout.dialog_add_child, null);
                 //Create a builder for the dialog
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(ChooseChildActivity.this);
                 //Associate the view to the builder
                 mBuilder.setView(dialogAddLayout);
-                etNameChild = (EditText)dialogAddLayout.findViewById(R.id.et_ad_child_name);
+                etNameChild = (EditText) dialogAddLayout.findViewById(R.id.et_ad_child_name);
 
                 //Setting Buttons Yes or No
                 // Setting Positive "Yes" Button
