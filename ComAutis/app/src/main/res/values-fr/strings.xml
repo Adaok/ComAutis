@@ -18,4 +18,10 @@
     <string name="tv_header_ad_delete_child">Supprimer un enfant</string>
     <string name="advertising_ad_delete_child">La suppression d enfant supprime également les pages qui lui sont associés. Etes-vous sur de vouloir continuer ?</string>
 
+    <!-- Page List Activity and his dialog -->
+    <string name="header_add_page">Ajouter une nouvelle page</string>
+    <string name="page_name_information">Nom de la page</string>
+    <string name="tv_header_ad_delete_page">Supprimer une page</string>
+    <string name="advertising_ad_delete_page">La suppression d une page est irréversible. Etes-vous sur de vouloir continuer ?</string>
+
 </resources>
