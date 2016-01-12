@@ -16,6 +16,9 @@
     <string name="tv_header_ad_add_child">Add a new child</string>
     <string name="btn_ad_positive">Ok</string>
     <string name="btn_ad_negative">Cancel</string>
+    <string name="title_activity_choose_page">ChoosePageActivity</string>
+    <string name="header_add_page">Add new page</string>
+    <string name="page_name_information">Page name</string>
 
 
 </resources>
