@@ -10,8 +10,8 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ChooseChildActivity"
-            android:label="@string/app_name"
             android:configChanges="orientation|screenSize"
+            android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,8 @@
         <activity
             android:name=".ChoosePageActivity"
             android:label="@string/title_activity_choose_page"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ChoosePictureActivity"></activity>
     </application>
 
 </manifest>
