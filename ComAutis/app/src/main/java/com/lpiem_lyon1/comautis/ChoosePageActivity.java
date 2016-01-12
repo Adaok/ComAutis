@@ -72,9 +72,11 @@ public class ChoosePageActivity extends BaseActivity {
                             myPage.setName(namePage);
                             myPage.setChildId(childId);
                             mLocalDb.insertPage(myPage, null);
+                            Intent intent = new Intent(getBaseContext() , ChoosePictureActivity.class);
                             Toast.makeText(getApplicationContext(), "Page created",
                                     Toast.LENGTH_SHORT).show();
-                            loadPages();
+                            //loadPages();
+                            startActivity(intent);
                         } else {
                             Toast.makeText(getApplicationContext(), "Retry and please give a name",
                                     Toast.LENGTH_SHORT).show();
