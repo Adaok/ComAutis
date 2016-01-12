@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.lpiem_lyon1.comautis.R;
@@ -19,13 +20,15 @@ import java.util.List;
  */
 public class GridPicturesAdapter extends BaseAdapter{
 
-    List<Bitmap> mListPictures;
-    List<String> mListPicturesName;
-    Context mContext;
+    private final List<Boolean> mIsSelected;
+    private final List<Bitmap> mListPictures;
+    private final List<String> mListPicturesName;
+    private final Context mContext;
 
-    public GridPicturesAdapter(List<Bitmap> listPicture , List<String> listPictureName , Context context) {
+    public GridPicturesAdapter(List<Bitmap> listPicture , List<String> listPictureName, List<Boolean> isSelected , Context context) {
         mListPictures = listPicture;
         mListPicturesName = listPictureName;
+        mIsSelected = isSelected;
         mContext = context;
     }
 
@@ -46,17 +49,20 @@ public class GridPicturesAdapter extends BaseAdapter{
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        LinearLayout layout;
+        RelativeLayout layout;
         if (convertView == null){
-            layout = (LinearLayout) LayoutInflater.from(mContext).inflate(R.layout.grid_chosse_pictures_item , null);
+            layout = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.grid_chosse_pictures_item , null);
         }else {
-            layout = (LinearLayout)convertView;
+            layout = (RelativeLayout)convertView;
         }
 
         ImageView imageViewPicture = (ImageView) layout.findViewById(R.id.grid_item_image);
+        ImageView imageSelected = (ImageView) layout.findViewById(R.id.selected_pictures);
         TextView textViewPictureName = (TextView) layout.findViewById(R.id.grid_item_name);
 
         imageViewPicture.setImageBitmap(mListPictures.get(position));
+        if(mIsSelected.get(position))
+            imageSelected.setVisibility(View.VISIBLE);
         textViewPictureName.setText(mListPicturesName.get(position));
 
         return layout;
