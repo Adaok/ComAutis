@@ -73,6 +73,7 @@ public class ChooseChildActivity extends BaseActivity {
                             //TODO
                             String idChildTarget = mListChild.get(position).getId();
                             mLocalDb.deleteChildById(idChildTarget, null);
+                            mLocalDb.deletePageByChild(idChildTarget, null);
                             Toast.makeText(getApplicationContext(), "Child deleted",
                                     Toast.LENGTH_SHORT).show();
                             loadChild();
