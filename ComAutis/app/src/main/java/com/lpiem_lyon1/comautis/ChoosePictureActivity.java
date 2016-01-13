@@ -1,5 +1,6 @@
 package com.lpiem_lyon1.comautis;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
@@ -94,6 +95,10 @@ public class ChoosePictureActivity extends BaseActivity {
                 String stringIdPicture = Long.toString(idPicture);
                 mLocalDb.insertPictureInPage(pageId, stringIdPicture, position, null);
             }
+            Intent intentPage = new Intent(getBaseContext(), PageActivity.class);
+            intentPage.putExtra(ChoosePageActivity.EXTRA_PAGE_ID,pageId);
+            startActivity(intentPage);
+            finish();
         }
 
         return false;

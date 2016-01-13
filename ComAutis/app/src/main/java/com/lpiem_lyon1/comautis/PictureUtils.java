@@ -1,6 +1,7 @@
 package com.lpiem_lyon1.comautis;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Environment;
 
@@ -30,6 +31,12 @@ public class PictureUtils {
     public static File[] getPictures(){
         File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"ComAutis");
         return directory.listFiles();
+    }
+
+    public static Bitmap getBitmapFromPath(String path){
+        Bitmap bitmap = BitmapFactory.decodeFile(path);
+        bitmap = PictureUtils.getResizedBitmap(bitmap, 180, 180);
+        return bitmap;
     }
 
     public static Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {

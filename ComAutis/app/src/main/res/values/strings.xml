@@ -20,7 +20,6 @@
     <string name="advertising_ad_delete_child">Deletion of child also removes associate pages. Are you sure you want to continue ?</string>
 
 
-
     <!-- Page List Activity and his dialog -->
     <string name="title_activity_choose_page">ChoosePageActivity</string>
     <string name="header_add_page">Add new page</string>

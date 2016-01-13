@@ -12,6 +12,7 @@ import com.lpiem_lyon1.comautis.Database.Table.PictureTable;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Folder;
 import com.lpiem_lyon1.comautis.Models.Page;
+import com.lpiem_lyon1.comautis.Models.PagePicture;
 import com.lpiem_lyon1.comautis.Models.Picture;
 
 import java.util.ArrayList;
@@ -345,7 +346,24 @@ public class LocalDataBase implements ILocalDataBase {
 
     @Override
     public void requestPictureFromPage(String idPage, RequestCallback callback) {
-
+        if (idPage != "" && idPage.isEmpty()){
+            Cursor cursor = mSQLiteDatabase.query(PagePictureTable.TABLE_NAME,new String[]{PagePictureTable.KEY_PICTURE_ID ,PagePictureTable.KEY_ORDER}, PagePictureTable.KEY_PAGE_ID + "=?", new String[]{idPage}, null, null, PagePictureTable.KEY_ORDER, null);
+            List<PagePicture> pagePictures = new ArrayList<>();
+            if (cursor != null) {
+                if (cursor.moveToFirst()) {
+                    PagePictureTable pagePictureTable = new PagePictureTable();
+                    do {
+                        pagePictures.add(pagePictureTable.fromCursor(cursor));
+                    } while (cursor.moveToNext());
+                }
+            }
+            cursor.close();
+            if (callback != null)
+                callback.onResult(pagePictures);
+        }
+        if (callback != null) {
+            callback.onError(new IllegalArgumentException("Page id is null"));
+        }
     }
 
     //endregion
@@ -405,7 +423,7 @@ public class LocalDataBase implements ILocalDataBase {
 
     @Override
     public void insertPictureInPage(String idPage, String idPicture, String orderPicture, RequestCallback callback) {
-        mSQLiteDatabase.rawQuery("INSERT INTO " + PagePictureTable.TABLE_NAME + " VALUE ( " + idPage + " , " + idPicture + " ," + orderPicture + ")",null);
+        mSQLiteDatabase.rawQuery("INSERT INTO " + PagePictureTable.TABLE_NAME + " VALUES( '" + idPage + "' , '" + idPicture + "' ,'" + orderPicture + "')",null);
     }
 //endregion
 
