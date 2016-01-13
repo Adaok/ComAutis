@@ -51,5 +51,7 @@ public interface ILocalDataBase {
     void insertPage(Page page, RequestCallback callback);
 
     void deletePageById(String id, RequestCallback callback);
+
+    void deletePageByChild(String idChild, RequestCallback callback);
     //endregion
 }

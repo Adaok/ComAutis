@@ -16,9 +16,15 @@
     <string name="tv_header_ad_add_child">Add a new child</string>
     <string name="btn_ad_positive">Ok</string>
     <string name="btn_ad_negative">Cancel</string>
+    <string name="tv_header_ad_delete_child">Delete a child</string>
+    <string name="advertising_ad_delete_child">Deletion of child also removes associate pages. Are you sure you want to continue ?</string>
+
+
+
+    <!-- Page List Activity and his dialog -->
     <string name="title_activity_choose_page">ChoosePageActivity</string>
     <string name="header_add_page">Add new page</string>
     <string name="page_name_information">Page name</string>
-
+    <string name="advertising_ad_delete_page">Deletion of page is non-reversible. Are you sure to want to continue ?</string>
 
 </resources>

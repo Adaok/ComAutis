@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/black">
+
+        <ImageView
+            android:layout_width="@dimen/icon_item_size"
+            android:layout_height="@dimen/icon_item_size"
+            android:src="@drawable/ic_recycle_bin"
+            android:layout_gravity="center_vertical"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_header_ad_delete_page"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/white"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_ad_warning_delete"
+        android:text="@string/advertising_ad_delete_page"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"/>
+
+</LinearLayout>

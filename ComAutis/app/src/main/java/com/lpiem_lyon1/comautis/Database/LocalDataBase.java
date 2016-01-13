@@ -449,6 +449,17 @@ public class LocalDataBase implements ILocalDataBase {
         }
     }
 
+    @Override
+    public void deletePageByChild(String idChild, RequestCallback callback) {
+        int valueReturn = mSQLiteDatabase.delete(PageTable.TABLE_NAME, PageTable.KEY_CHILD_ID + "=?", new String[]{idChild});
+        if(valueReturn != 0){
+            //TODO
+            //callback.onResult();
+        }
+        else {
+            callback.onError(new Error("Pages of child not remove"));
+        }
+    }
 
     //endregion
 }
