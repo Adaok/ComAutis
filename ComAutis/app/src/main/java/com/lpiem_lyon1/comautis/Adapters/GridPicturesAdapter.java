@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.lpiem_lyon1.comautis.Models.Picture;
 import com.lpiem_lyon1.comautis.R;
 
 import java.util.List;
@@ -21,13 +22,11 @@ import java.util.List;
 public class GridPicturesAdapter extends BaseAdapter{
 
     private final List<Boolean> mIsSelected;
-    private final List<Bitmap> mListPictures;
-    private final List<String> mListPicturesName;
+    private final List<Picture> mListPictures;
     private final Context mContext;
 
-    public GridPicturesAdapter(List<Bitmap> listPicture , List<String> listPictureName, List<Boolean> isSelected , Context context) {
+    public GridPicturesAdapter(List<Picture> listPicture , List<Boolean> isSelected , Context context) {
         mListPictures = listPicture;
-        mListPicturesName = listPictureName;
         mIsSelected = isSelected;
         mContext = context;
     }
@@ -60,10 +59,10 @@ public class GridPicturesAdapter extends BaseAdapter{
         ImageView imageSelected = (ImageView) layout.findViewById(R.id.selected_pictures);
         TextView textViewPictureName = (TextView) layout.findViewById(R.id.grid_item_name);
 
-        imageViewPicture.setImageBitmap(mListPictures.get(position));
+        imageViewPicture.setImageBitmap(mListPictures.get(position).getBitmap());
         if(mIsSelected.get(position))
             imageSelected.setVisibility(View.VISIBLE);
-        textViewPictureName.setText(mListPicturesName.get(position));
+        textViewPictureName.setText(mListPictures.get(position).getName());
 
         return layout;
     }

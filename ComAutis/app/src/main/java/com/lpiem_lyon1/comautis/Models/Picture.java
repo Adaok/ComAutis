@@ -1,5 +1,7 @@
 package com.lpiem_lyon1.comautis.Models;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by alexislp on 07/01/16.
  */
@@ -9,12 +11,14 @@ public class Picture extends Model {
     private int mIsFavorite;
     private String mFolderId;
 
+    private Bitmap mBitmap;
+
     public String getName() {
         return mName;
     }
 
     public void setName(String name) {
-        this.mName = mName;
+        this.mName = name;
     }
 
     public String getPicturePath() {
@@ -39,5 +43,13 @@ public class Picture extends Model {
 
     public void setFolderId(String folderId) {
         this.mFolderId = folderId;
+    }
+
+    public Bitmap getBitmap() {
+        return mBitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.mBitmap = bitmap;
     }
 }

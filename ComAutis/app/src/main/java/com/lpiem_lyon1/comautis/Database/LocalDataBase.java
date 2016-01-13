@@ -3,15 +3,14 @@ package com.lpiem_lyon1.comautis.Database;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.lpiem_lyon1.comautis.Database.Table.ChildTable;
 import com.lpiem_lyon1.comautis.Database.Table.FolderTable;
+import com.lpiem_lyon1.comautis.Database.Table.PagePictureTable;
 import com.lpiem_lyon1.comautis.Database.Table.PageTable;
 import com.lpiem_lyon1.comautis.Database.Table.PictureTable;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Folder;
-import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Page;
 import com.lpiem_lyon1.comautis.Models.Picture;
 
@@ -344,6 +343,11 @@ public class LocalDataBase implements ILocalDataBase {
         }
     }
 
+    @Override
+    public void requestPictureFromPage(String idPage, RequestCallback callback) {
+
+    }
+
     //endregion
 
     //region INSERT
@@ -362,7 +366,7 @@ public class LocalDataBase implements ILocalDataBase {
     }
 
     @Override
-    public void insertPicture(Picture picture, RequestCallback callback) {
+    public long insertPicture(Picture picture, RequestCallback callback) {
         long valueReturn = mSQLiteDatabase.insert(PictureTable.TABLE_NAME, null, new PictureTable().getContentValues(picture));
         if (valueReturn != -1){
             //TODO
@@ -371,6 +375,7 @@ public class LocalDataBase implements ILocalDataBase {
         else {
             callback.onError(new Error("Creation picture failed"));
         }
+        return valueReturn;
     }
 
     @Override
@@ -386,7 +391,7 @@ public class LocalDataBase implements ILocalDataBase {
     }
 
     @Override
-    public void insertPage(Page page, RequestCallback callback) {
+    public long insertPage(Page page, RequestCallback callback) {
         long valueReturn = mSQLiteDatabase.insert(PageTable.TABLE_NAME, null, new PageTable().getContentValues(page));
         if (valueReturn != -1){
             //TODO
@@ -395,9 +400,14 @@ public class LocalDataBase implements ILocalDataBase {
         else {
             callback.onError(new Error("Creation page failed"));
         }
+        return valueReturn;
     }
 
-    //endregion
+    @Override
+    public void insertPictureInPage(String idPage, String idPicture, String orderPicture, RequestCallback callback) {
+        mSQLiteDatabase.rawQuery("INSERT INTO " + PagePictureTable.TABLE_NAME + " VALUE ( " + idPage + " , " + idPicture + " ," + orderPicture + ")",null);
+    }
+//endregion
 
     //region DELETE
 
@@ -459,6 +469,11 @@ public class LocalDataBase implements ILocalDataBase {
         else {
             callback.onError(new Error("Pages of child not remove"));
         }
+    }
+
+    @Override
+    public void deletePictureInPage(String id, RequestCallback callback) {
+        //TODO
     }
 
     //endregion

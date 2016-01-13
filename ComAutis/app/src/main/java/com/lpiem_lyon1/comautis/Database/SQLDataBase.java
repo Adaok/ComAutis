@@ -9,6 +9,7 @@ import com.lpiem_lyon1.comautis.Database.Table.FolderTable;
 import com.lpiem_lyon1.comautis.Database.Table.PagePictureTable;
 import com.lpiem_lyon1.comautis.Database.Table.PageTable;
 import com.lpiem_lyon1.comautis.Database.Table.PictureTable;
+import com.lpiem_lyon1.comautis.Models.Folder;
 
 /**
  * Created by alexislp on 07/01/16.
@@ -16,7 +17,7 @@ import com.lpiem_lyon1.comautis.Database.Table.PictureTable;
 public class SQLDataBase extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ComAutisDataBase";
-    private static final int VERSION = 1;
+    static final int VERSION = 2;
 
 
     public SQLDataBase(Context context) {
@@ -34,9 +35,17 @@ public class SQLDataBase extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        if (oldVersion < 6) {
+        if (oldVersion < newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + PictureTable.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + PageTable.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + ChildTable.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + PagePictureTable.TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXISTS " + FolderTable.TABLE_NAME);
             onCreate(db);
         }
+    }
+
+    public int getVERSION() {
+        return VERSION;
     }
 }

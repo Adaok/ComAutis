@@ -22,8 +22,9 @@ import java.util.List;
 
 public class ChoosePageActivity extends BaseActivity {
 
-    private String childId;
+    public static final String EXTRA_PAGE_ID = "pageId";
 
+    private String childId;
     private EditText etNamePage;
     private ArrayList<Page> mListPage = new ArrayList<>();
     private ListView mPageListView;
@@ -114,8 +115,10 @@ public class ChoosePageActivity extends BaseActivity {
                             Page myPage = new Page();
                             myPage.setName(namePage);
                             myPage.setChildId(childId);
-                            mLocalDb.insertPage(myPage, null);
+                            long id = mLocalDb.insertPage(myPage, null);
+                            myPage.setId(Long.toString(id));
                             Intent intent = new Intent(getBaseContext() , ChoosePictureActivity.class);
+                            intent.putExtra(EXTRA_PAGE_ID, myPage.getId());
                             Toast.makeText(getApplicationContext(), "Page created",
                                     Toast.LENGTH_SHORT).show();
                             //loadPages();
