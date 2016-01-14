@@ -17,6 +17,7 @@ import com.lpiem_lyon1.comautis.Adapters.ListChildAdapter;
 import com.lpiem_lyon1.comautis.Database.RequestCallback;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Model;
+import com.lpiem_lyon1.comautis.Models.Page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,9 +73,11 @@ public class ChooseChildActivity extends BaseActivity {
                         // User pressed YES button.
                             //TODO
                             String idChildTarget = mListChild.get(position).getId();
+                            if (checkPageInChild(idChildTarget) != 0){
+                                mLocalDb.deletePageByChild(idChildTarget, null);
+                            }
                             mLocalDb.deleteChildById(idChildTarget, null);
-                            mLocalDb.deletePageByChild(idChildTarget, null);
-                            Toast.makeText(getApplicationContext(), "Child deleted",
+                        Toast.makeText(getApplicationContext(), "Child deleted",
                                     Toast.LENGTH_SHORT).show();
                             loadChild();
                     }
@@ -171,6 +174,22 @@ public class ChooseChildActivity extends BaseActivity {
 
         super.onPause();
         finish();
+    }
+
+    private int checkPageInChild(String idChildTarget) {
+        List<Page> listPageInChild = new ArrayList<>();
+        mLocalDb.requestPageByChild(idChildTarget, new RequestCallback() {
+            @Override
+            public void onResult(List<? extends Model> entities) {
+                List listPageInChild = (List<Page>) entities;
+            }
+
+            @Override
+            public void onError(Throwable error) {
+
+            }
+        });
+        return listPageInChild.size();
     }
 
 }
