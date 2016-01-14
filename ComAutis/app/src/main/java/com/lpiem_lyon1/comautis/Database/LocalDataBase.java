@@ -3,6 +3,7 @@ package com.lpiem_lyon1.comautis.Database;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.lpiem_lyon1.comautis.Database.Table.ChildTable;
 import com.lpiem_lyon1.comautis.Database.Table.FolderTable;
@@ -346,15 +347,15 @@ public class LocalDataBase implements ILocalDataBase {
 
     @Override
     public void requestPictureFromPage(String idPage, RequestCallback callback) {
-        if (idPage != "" && idPage.isEmpty()){
-            Cursor cursor = mSQLiteDatabase.query(PagePictureTable.TABLE_NAME,new String[]{PagePictureTable.KEY_PICTURE_ID ,PagePictureTable.KEY_ORDER}, PagePictureTable.KEY_PAGE_ID + "=?", new String[]{idPage}, null, null, PagePictureTable.KEY_ORDER, null);
+        if (idPage != "" && !idPage.isEmpty()){
+            Cursor cursor = mSQLiteDatabase.query(PagePictureTable.TABLE_NAME,null, /*PagePictureTable.KEY_PAGE_ID + "=?", new String[]{idPage}*/null,null, null, null, null, null);
             List<PagePicture> pagePictures = new ArrayList<>();
             if (cursor != null) {
-                if (cursor.moveToFirst()) {
+                if (cursor.moveToLast()) {
                     PagePictureTable pagePictureTable = new PagePictureTable();
                     do {
                         pagePictures.add(pagePictureTable.fromCursor(cursor));
-                    } while (cursor.moveToNext());
+                    } while (cursor.moveToPrevious());
                 }
             }
             cursor.close();
@@ -422,8 +423,10 @@ public class LocalDataBase implements ILocalDataBase {
     }
 
     @Override
-    public void insertPictureInPage(String idPage, String idPicture, String orderPicture, RequestCallback callback) {
-        mSQLiteDatabase.rawQuery("INSERT INTO " + PagePictureTable.TABLE_NAME + " VALUES( '" + idPage + "' , '" + idPicture + "' ,'" + orderPicture + "')",null);
+    public void insertPictureInPage(PagePicture pp, RequestCallback callback) {
+        long valueReturn = mSQLiteDatabase.insert(PagePictureTable.TABLE_NAME,null, new PagePictureTable().getContentValues(pp));
+        if(valueReturn == -1)
+            Log.d("FUCK", "FUCK");
     }
 //endregion
 

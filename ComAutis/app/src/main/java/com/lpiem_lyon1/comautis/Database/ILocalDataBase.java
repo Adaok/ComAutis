@@ -3,6 +3,7 @@ package com.lpiem_lyon1.comautis.Database;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Folder;
 import com.lpiem_lyon1.comautis.Models.Page;
+import com.lpiem_lyon1.comautis.Models.PagePicture;
 import com.lpiem_lyon1.comautis.Models.Picture;
 
 /**
@@ -58,7 +59,7 @@ public interface ILocalDataBase {
     //region PagePicture
     void requestPictureFromPage(String idPage, RequestCallback callback);
 
-    void insertPictureInPage(String idPage, String idPicture, String orderPicture, RequestCallback callback);
+    void insertPictureInPage(PagePicture pp, RequestCallback callback);
 
     void deletePictureInPage(String id, RequestCallback callback);
 

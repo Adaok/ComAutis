@@ -19,6 +19,11 @@ public class PagePictureTable extends AbstractTable<PagePicture> {
     public static final String TABLE_NAME = "page_picture";
 
     /**
+     * Represents the unique Id of a {@link PagePicture}
+     */
+    public static final String KEY_ID = "id";
+
+    /**
      * Represents the unique Id of a {@link Page}
      */
     public static final String KEY_PAGE_ID = "id_page";
@@ -39,8 +44,10 @@ public class PagePictureTable extends AbstractTable<PagePicture> {
 
      */
     public static final String CREATE_TABLE = "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + "(" +
+            KEY_ID + " integer primary key autoincrement," +
             KEY_PAGE_ID + AbstractTable.TYPE_TEXT + ", " +
-            KEY_PICTURE_ID + AbstractTable.TYPE_TEXT + ", " + KEY_ORDER + AbstractTable.TYPE_SMALLTEXT + ")";
+            KEY_PICTURE_ID + AbstractTable.TYPE_TEXT + ", " +
+            KEY_ORDER + AbstractTable.TYPE_SMALLTEXT + ")";
 
 
     @Override
@@ -60,6 +67,7 @@ public class PagePictureTable extends AbstractTable<PagePicture> {
     @Override
     public PagePicture fromCursor(Cursor cursor) {
         PagePicture pagePicture = new PagePicture();
+        pagePicture.setId(Integer.toString(cursor.getInt(cursor.getColumnIndex(PagePictureTable.KEY_ID))));
         pagePicture.setPageId(cursor.getString(cursor.getColumnIndex(PagePictureTable.KEY_PAGE_ID)));
         pagePicture.setPictureId(cursor.getString(cursor.getColumnIndex(PagePictureTable.KEY_PICTURE_ID)));
         pagePicture.setOrder(cursor.getString(cursor.getColumnIndex(PagePictureTable.KEY_ORDER)));

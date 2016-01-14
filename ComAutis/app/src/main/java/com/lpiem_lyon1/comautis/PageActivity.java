@@ -20,8 +20,10 @@ public class PageActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_page);
-        LinearLayout pageLayout = (LinearLayout)findViewById(R.id.linearLayoutPage);
+        LinearLayout pageLayout = new LinearLayout(this);
+        LinearLayout.LayoutParams pageLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT , LinearLayout.LayoutParams.MATCH_PARENT );
+        setContentView(pageLayout , pageLayoutParams);
+
         if (getIntent() != null) {
             idPage = getIntent().getStringExtra(ChoosePageActivity.EXTRA_PAGE_ID);
         }

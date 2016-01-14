@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.lpiem_lyon1.comautis.Adapters.GridPicturesAdapter;
+import com.lpiem_lyon1.comautis.Models.PagePicture;
 import com.lpiem_lyon1.comautis.Models.Picture;
 
 import java.io.File;
@@ -93,7 +94,11 @@ public class ChoosePictureActivity extends BaseActivity {
                 long idPicture = mLocalDb.insertPicture(mSelectedBitmap.get(j), null);
                 String position = Integer.toString(j);
                 String stringIdPicture = Long.toString(idPicture);
-                mLocalDb.insertPictureInPage(pageId, stringIdPicture, position, null);
+                PagePicture pp = new PagePicture();
+                pp.setPageId(pageId);
+                pp.setPictureId(stringIdPicture);
+                pp.setOrder(position);
+                mLocalDb.insertPictureInPage(pp, null);
             }
             Intent intentPage = new Intent(getBaseContext(), PageActivity.class);
             intentPage.putExtra(ChoosePageActivity.EXTRA_PAGE_ID,pageId);
