@@ -179,4 +179,10 @@ public class ChoosePageActivity extends BaseActivity {
         Intent intentListChild = new Intent(getBaseContext(), ChooseChildActivity.class);
         startActivity(intentListChild);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadPages();
+    }
 }
