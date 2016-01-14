@@ -35,7 +35,7 @@ public class PictureUtils {
 
     public static Bitmap getBitmapFromPath(String path){
         Bitmap bitmap = BitmapFactory.decodeFile(path);
-        bitmap = PictureUtils.getResizedBitmap(bitmap, 180, 180);
+        bitmap = PictureUtils.getResizedBitmap(bitmap, 350, 350);
         return bitmap;
     }
 

@@ -6,10 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.lpiem_lyon1.comautis.Database.Table.ChildTable;
 import com.lpiem_lyon1.comautis.Database.Table.FolderTable;
-import com.lpiem_lyon1.comautis.Database.Table.PagePictureTable;
 import com.lpiem_lyon1.comautis.Database.Table.PageTable;
 import com.lpiem_lyon1.comautis.Database.Table.PictureTable;
-import com.lpiem_lyon1.comautis.Models.Folder;
 
 /**
  * Created by alexislp on 07/01/16.
@@ -17,7 +15,7 @@ import com.lpiem_lyon1.comautis.Models.Folder;
 public class SQLDataBase extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "ComAutisDataBase";
-    static final int VERSION = 2;
+    static final int VERSION = 3;
 
 
     public SQLDataBase(Context context) {
@@ -30,7 +28,6 @@ public class SQLDataBase extends SQLiteOpenHelper {
         db.execSQL(PictureTable.CREATE_TABLE);
         db.execSQL(ChildTable.CREATE_TABLE);
         db.execSQL(PageTable.CREATE_TABLE);
-        db.execSQL(PagePictureTable.CREATE_TABLE);
     }
 
     @Override
@@ -39,7 +36,6 @@ public class SQLDataBase extends SQLiteOpenHelper {
             db.execSQL("DROP TABLE IF EXISTS " + PictureTable.TABLE_NAME);
             db.execSQL("DROP TABLE IF EXISTS " + PageTable.TABLE_NAME);
             db.execSQL("DROP TABLE IF EXISTS " + ChildTable.TABLE_NAME);
-            db.execSQL("DROP TABLE IF EXISTS " + PagePictureTable.TABLE_NAME);
             db.execSQL("DROP TABLE IF EXISTS " + FolderTable.TABLE_NAME);
             onCreate(db);
         }

@@ -41,6 +41,10 @@ public class PictureTable extends AbstractTable<Picture> {
      */
     public static final String KEY_FOLDER_ID = "child_id";
 
+    public static final String KEY_PAGE_ID ="page_id";
+
+    public static final String KEY_ORDER = "order_picture";
+
     /**
      * The creation SQLite command of {@link Picture}
      */
@@ -49,7 +53,9 @@ public class PictureTable extends AbstractTable<Picture> {
             KEY_NAME + TYPE_TEXT + ", " +
             KEY_PICTURE_PATH + TYPE_TEXT + ", " +
             KEY_IS_FAVORITE + TYPE_BOOLEAN + ", " +
-            KEY_FOLDER_ID + TYPE_SMALLTEXT + ")";
+            KEY_FOLDER_ID + TYPE_SMALLTEXT + ", " +
+            KEY_PAGE_ID + TYPE_SMALLTEXT + ", " +
+            KEY_ORDER + TYPE_SMALLTEXT + ")";
 
     @Override
     public ContentValues getContentValues(Picture object) {
@@ -59,6 +65,8 @@ public class PictureTable extends AbstractTable<Picture> {
         contentValues.put(KEY_PICTURE_PATH, object.getPicturePath());
         contentValues.put(KEY_IS_FAVORITE, object.isFavorite());
         contentValues.put(KEY_FOLDER_ID, object.getFolderId());
+        contentValues.put(KEY_PAGE_ID, object.getPageId());
+        contentValues.put(KEY_ORDER, object.getOrder());
         return contentValues;
     }
 
@@ -75,6 +83,8 @@ public class PictureTable extends AbstractTable<Picture> {
         picture.setmPicturePath(cursor.getString(cursor.getColumnIndex(PictureTable.KEY_PICTURE_PATH)));
         picture.setIsFavorite(cursor.getInt(cursor.getColumnIndex(PictureTable.KEY_IS_FAVORITE)));
         picture.setFolderId(cursor.getString(cursor.getColumnIndex(PictureTable.KEY_FOLDER_ID)));
+        picture.setFolderId(cursor.getString(cursor.getColumnIndex(PictureTable.KEY_PAGE_ID)));
+        picture.setFolderId(cursor.getString(cursor.getColumnIndex(PictureTable.KEY_ORDER)));
         return picture;
     }
 }

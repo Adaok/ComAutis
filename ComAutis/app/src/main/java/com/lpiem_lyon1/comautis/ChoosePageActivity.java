@@ -44,6 +44,15 @@ public class ChoosePageActivity extends BaseActivity {
 
         loadPages();
 
+        mPageListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getBaseContext() , PageActivity.class);
+                intent.putExtra(EXTRA_PAGE_ID, mListPage.get(position).getId());
+                startActivity(intent);
+            }
+        });
+
         //long click for delete request
         mPageListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override

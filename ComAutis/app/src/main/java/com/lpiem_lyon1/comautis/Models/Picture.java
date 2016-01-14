@@ -10,6 +10,8 @@ public class Picture extends Model {
     private String mPicturePath;
     private int mIsFavorite;
     private String mFolderId;
+    private String mPageId;
+    private String mOrder;
 
     private Bitmap mBitmap;
 
@@ -51,5 +53,21 @@ public class Picture extends Model {
 
     public void setBitmap(Bitmap bitmap) {
         this.mBitmap = bitmap;
+    }
+
+    public String getOrder() {
+        return mOrder;
+    }
+
+    public void setOrder(String mOrder) {
+        this.mOrder = mOrder;
+    }
+
+    public String getPageId() {
+        return mPageId;
+    }
+
+    public void setPageId(String mPageId) {
+        this.mPageId = mPageId;
     }
 }
