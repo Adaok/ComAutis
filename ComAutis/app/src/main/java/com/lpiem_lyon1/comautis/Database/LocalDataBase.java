@@ -474,7 +474,8 @@ public class LocalDataBase implements ILocalDataBase {
             //callback.onResult();
         }
         else {
-            callback.onError(new Error("Page not deleted, fail"));
+            if(callback != null)
+                callback.onError(new Error("Page not deleted, fail"));
         }
     }
 

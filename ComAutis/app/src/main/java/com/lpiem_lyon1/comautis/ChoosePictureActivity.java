@@ -55,15 +55,14 @@ public class ChoosePictureActivity extends BaseActivity {
         mGridPictures.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                if (!mIsSeleted.get(position)){
+                if (!mIsSeleted.get(position)) {
                     mSelectedBitmap.add(mlistPictures.get(position));
                     mIsSeleted.set(position, true);
                     Picture picturePage = new Picture();
                     picturePage.setName(mlistPictures.get(position).getName());
-                }
-                else {
-                    for(int i = 0 ; i < mSelectedBitmap.size() ; i++) {
-                        if (mlistPictures.get(position).getName().equals(mSelectedBitmap.get(i).getName())){
+                } else {
+                    for (int i = 0; i < mSelectedBitmap.size(); i++) {
+                        if (mlistPictures.get(position).getName().equals(mSelectedBitmap.get(i).getName())) {
                             mSelectedBitmap.remove(i);
                         }
                     }
@@ -100,9 +99,21 @@ public class ChoosePictureActivity extends BaseActivity {
                 startActivity(intentPage);
                 finish();
             }
+        }else if(item.getItemId() == R.id.home){
+            onBackPressed();
         }
-
-
         return false;
+    }
+
+    @Override
+    protected boolean useDrawerToggle() {
+        return false;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        mLocalDb.deletePageById(pageId,null);
+        finish();
     }
 }
