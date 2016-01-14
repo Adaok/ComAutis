@@ -89,16 +89,19 @@ public class ChoosePictureActivity extends BaseActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.action_validate_picture){
-            for (int j = 0; j < mSelectedBitmap.size(); j++) {
-                mSelectedBitmap.get(j).setPageId(pageId);
-                mSelectedBitmap.get(j).setOrder(Integer.toString(j));
-                mLocalDb.insertPicture(mSelectedBitmap.get(j), null);
+            if(mSelectedBitmap.size() != 0) {
+                for (int j = 0; j < mSelectedBitmap.size(); j++) {
+                    mSelectedBitmap.get(j).setPageId(pageId);
+                    mSelectedBitmap.get(j).setOrder(Integer.toString(j));
+                    mLocalDb.insertPicture(mSelectedBitmap.get(j), null);
+                }
+                Intent intentPage = new Intent(getBaseContext(), PageActivity.class);
+                intentPage.putExtra(ChoosePageActivity.EXTRA_PAGE_ID, pageId);
+                startActivity(intentPage);
+                finish();
             }
-            Intent intentPage = new Intent(getBaseContext(), PageActivity.class);
-            intentPage.putExtra(ChoosePageActivity.EXTRA_PAGE_ID,pageId);
-            startActivity(intentPage);
-            finish();
         }
+
 
         return false;
     }
