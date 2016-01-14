@@ -34,6 +34,7 @@ public class ChoosePageActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_page);
 
+        getSupportActionBar().setTitle(R.string.choose_page);
         if(getIntent() != null){
             if(getIntent().getExtras() != null) {
                 childId = getIntent().getExtras().getString(ChooseChildActivity.EXTRA_CHILD_ID);

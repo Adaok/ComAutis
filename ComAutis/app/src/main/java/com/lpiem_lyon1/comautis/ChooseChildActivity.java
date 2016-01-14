@@ -35,6 +35,7 @@ public class ChooseChildActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_child);
 
+        getSupportActionBar().setTitle(R.string.choose_child);
         PictureUtils.createPictureDirectory();
 
         mChildListView = (ListView) findViewById(R.id.lv_child);

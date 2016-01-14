@@ -25,5 +25,8 @@
     <string name="header_add_page">Add new page</string>
     <string name="page_name_information">Page name</string>
     <string name="advertising_ad_delete_page">Deletion of page is non-reversible. Are you sure to want to continue ?</string>
+    <string name="choose_pictures">Choissisez les images</string>
+    <string name="choose_child">Choissisez un enfant</string>
+    <string name="choose_page">Choissisez une page</string>
 
 </resources>

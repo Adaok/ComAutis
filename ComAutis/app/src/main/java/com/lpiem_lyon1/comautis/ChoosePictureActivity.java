@@ -30,6 +30,8 @@ public class ChoosePictureActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_picture);
 
+        getSupportActionBar().setTitle(R.string.choose_pictures);
+
         if (getIntent()!=null){
             pageId = getIntent().getStringExtra(ChoosePageActivity.EXTRA_PAGE_ID);
         }
