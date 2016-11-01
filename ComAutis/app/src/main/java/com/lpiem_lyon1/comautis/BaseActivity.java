@@ -1,9 +1,16 @@
 package com.lpiem_lyon1.comautis;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,6 +30,7 @@ import com.lpiem_lyon1.comautis.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.jar.Manifest;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -34,9 +42,42 @@ public class BaseActivity extends AppCompatActivity {
     protected SQLDataBase myDB;
     protected LocalDataBase mLocalDb;
 
+    private static final int MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                SharedPreferences getPrefs = PreferenceManager.getDefaultSharedPreferences(getBaseContext());
+
+                boolean isFirstStart = getPrefs.getBoolean("firstStart",true);
+
+                if (isFirstStart){
+                    Intent intent = new Intent(BaseActivity.this, IntroActivity.class);
+                    startActivity(intent);
+
+                    SharedPreferences.Editor editor = getPrefs.edit();
+
+                    editor.putBoolean("firstStart",false);
+
+                    editor.apply();
+                }
+            }
+        });
+
+        thread.start();
+
+        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+
+            if(ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE);
+            }
+        }
 
         SQLiteDatabase mComAutisDB = openOrCreateDatabase("ComAutisDB",MODE_PRIVATE,null);
 
@@ -144,5 +185,21 @@ public class BaseActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+
+        switch (requestCode){
+            case MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                    //accept
+                } else {
+                    //denied
+                }
+
+                return;
+        }
     }
 }

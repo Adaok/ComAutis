@@ -24,4 +24,23 @@
     <string name="tv_header_ad_delete_page">Supprimer une page</string>
     <string name="advertising_ad_delete_page">La suppression d une page est irréversible. Etes-vous sur de vouloir continuer ?</string>
 
+    <!-- Intro -->
+    <string name="skip">Passer</string>
+    <string name="skip_button">Passer</string>
+    <string name="done_button">Terminer</string>
+    <string name="title_slide1">Bonjour</string>
+    <string name="title_slide2">Petit point !</string>
+    <string name="title_slide3">Au cas où ...</string>
+    <string name="title_slide4">Les images</string>
+    <string name="title_slide5">Comment faire ?</string>
+    <string name="title_slide6">Mais j\'ai un ... </string>
+
+    <string name="text_slide1">Ceci est votre premier lancement de ComAutis, une application destinée à expliquer leur planning à des enfants autistes.</string>
+    <string name="text_slide2">Cette application a besoin d\'accéder à votre stockage pour enregistrer ces fiches planning. Autrement l\'application ne pourra pas fonctionner.</string>
+    <string name="text_slide3">Si jamais vous avez refuser la permission pour Android 6 ou +, sachez qu\'elle peut être activée dans Paramètres > Applications > ComAutis > Autorisations.</string>
+    <string name="text_slide4">ComAutis a besoin d\'image dans ses fiches, celle-ci devront aller dans le dossier ComAutis qui a été créé à l\'instant à la racine de votre appareil.</string>
+    <string name="text_slide5">Pour ajouter une image, rien de bien compliquer : connectez votre smartphone à votre PC, puis allez dans le dossier ComAutis de votre smartphone avec l\'explorateur. C\'est ici qu\'il faut mettre les images.</string>
+    <string name="text_slide6">Si vous avez un Mac, vous devrez télécharger un logiciel spécifique, nous vous recommandons Android File Transfer.</string>
+
+
 </resources>
