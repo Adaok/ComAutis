@@ -29,4 +29,20 @@
     <string name="choose_child">Choissisez un enfant</string>
     <string name="choose_page">Choissisez une page</string>
 
+    <!-- Intro -->
+    <string name="skip">Skip</string>
+    <string name="title_slide1">Welcome !</string>
+    <string name="title_slide2">Just a little thing !</string>
+    <string name="title_slide3">In case of ...</string>
+    <string name="title_slide4">Pictures</string>
+    <string name="title_slide5">How to do this ?</string>
+    <string name="title_slide6">But I have ... </string>
+
+    <string name="text_slide1">This is your first lauch of ComAutis, an app made to explain their schedule to autist children.</string>
+    <string name="text_slide2">This app needs to access your storage to save these schedules. Otherwise the app cannot work properly.</string>
+    <string name="text_slide3">If you denied permission on Android 6 or +, please note it can be activated in Settings > Apps > ComAutis > Permissions </string>
+    <string name="text_slide4">Documents in ComAutis need to contain pictures, which are stored in the ComAutis folder that was just created on your device.</string>
+    <string name="text_slide5">Here are the simple steps to add a picture: connect your smartphone to your computer, then use the file browser to access the ComAutis folder on your smartphone. This is the folder where you can add pictures.</string>
+    <string name="text_slide6">If you are using a Mac, you need to download a specific software. We recommend Android File Transfer.</string>
+
 </resources>

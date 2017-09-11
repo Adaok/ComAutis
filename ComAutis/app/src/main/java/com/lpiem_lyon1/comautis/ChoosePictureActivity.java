@@ -53,10 +53,9 @@ public class ChoosePictureActivity extends BaseActivity {
 
         loadGridPictures();
 
-        //long click
-        mGridPictures.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+        mGridPictures.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (!mIsSeleted.get(position)) {
                     mSelectedBitmap.add(mlistPictures.get(position));
                     mIsSeleted.set(position, true);
@@ -71,7 +70,7 @@ public class ChoosePictureActivity extends BaseActivity {
                     mIsSeleted.set(position, false);
                 }
                 loadGridPictures();
-                return false;
+                return;
             }
         });
     }
