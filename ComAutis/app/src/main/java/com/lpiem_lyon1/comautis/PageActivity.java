@@ -9,10 +9,12 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toolbar;
 
+import com.bumptech.glide.Glide;
 import com.lpiem_lyon1.comautis.Database.RequestCallback;
 import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Picture;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +44,7 @@ public class PageActivity extends BaseActivity {
 
         for (int i = 0; i < mListPictures.size(); i++) {
             ImageView imageView = new ImageView(this);
-            imageView.setImageBitmap(mListPictures.get(i).getBitmap());
+            Glide.with(this).load(new File(mListPictures.get(i).getPicturePath())).asBitmap().into(imageView);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT , LinearLayout.LayoutParams.WRAP_CONTENT );
             layoutParams.setMargins(10,10,10,10);
             linearLayout.addView(imageView, layoutParams);
