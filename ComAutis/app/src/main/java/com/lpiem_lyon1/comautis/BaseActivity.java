@@ -12,6 +12,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -42,7 +43,7 @@ public class BaseActivity extends AppCompatActivity {
     protected SQLDataBase myDB;
     protected LocalDataBase mLocalDb;
 
-    private static final int MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
+    public static final int MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,7 @@ public class BaseActivity extends AppCompatActivity {
 
         thread.start();
 
+        /*
         if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
 
             if(ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)){
@@ -78,6 +80,7 @@ public class BaseActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE);
             }
         }
+        */
 
         SQLiteDatabase mComAutisDB = openOrCreateDatabase("ComAutisDB",MODE_PRIVATE,null);
 
@@ -163,7 +166,7 @@ public class BaseActivity extends AppCompatActivity {
             // Use home/back button instead
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setHomeAsUpIndicator(getResources()
-                    .getDrawable(R.drawable.abc_ic_ab_back_mtrl_am_alpha));
+            .getDrawable(android.support.v7.appcompat.R.drawable.abc_ic_ab_back_material));
         }
     }
 
