@@ -16,12 +16,14 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
 import com.lpiem_lyon1.comautis.Adapters.ListChildAdapter;
 import com.lpiem_lyon1.comautis.Database.RequestCallback;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Page;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,6 +38,7 @@ public class ChooseChildActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         setContentView(R.layout.activity_choose_child);
 
         getSupportActionBar().setTitle(R.string.choose_child);
