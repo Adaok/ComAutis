@@ -17,14 +17,13 @@ public class IntroActivity extends AppIntro {
         super.onCreate(savedInstanceState);
 
         addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide1), getString(R.string.text_slide1), R.mipmap.ic_launcher, Color.parseColor("#03A9F4")));
-        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide2), getString(R.string.text_slide2), R.drawable.ic_child_face, Color.parseColor("#03A9F4")));
-        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide3), getString(R.string.text_slide3), R.drawable.ic_child_face, Color.parseColor("#03A9F4")));
-        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide4), getString(R.string.text_slide4), R.drawable.ic_child_face, Color.parseColor("#03A9F4")));
-        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide5), getString(R.string.text_slide5), R.drawable.ic_child_face, Color.parseColor("#03A9F4")));
-        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide6), getString(R.string.text_slide6), R.drawable.ic_child_face, Color.parseColor("#03A9F4")));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide2), getString(R.string.text_slide2), R.mipmap.ic_storage_mobile, Color.parseColor("#03A9F4")));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide3), getString(R.string.text_slide3), R.mipmap.ic_tips, Color.parseColor("#03A9F4")));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide4), getString(R.string.text_slide4), R.mipmap.ic_picture, Color.parseColor("#03A9F4")));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide5), getString(R.string.text_slide5), R.mipmap.ic_computer, Color.parseColor("#03A9F4")));
+        addSlide(AppIntroFragment.newInstance(getString(R.string.title_slide6), getString(R.string.text_slide6), R.mipmap.ic_mac, Color.parseColor("#03A9F4")));
 
         askForPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},2);
-
     }
 
     @Override
