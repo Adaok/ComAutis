@@ -1,16 +1,14 @@
 package com.lpiem_lyon1.comautis;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.ActionBar;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.Toolbar;
 
 import com.bumptech.glide.Glide;
 import com.lpiem_lyon1.comautis.Database.RequestCallback;
+import com.lpiem_lyon1.comautis.Fragment.SlideshowDialogFragment;
 import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Picture;
 
@@ -20,7 +18,7 @@ import java.util.List;
 
 public class PageActivity extends BaseActivity {
     private String idPage;
-    private List<Picture> mListPictures = new ArrayList<>();
+    private ArrayList<Picture> mListPictures = new ArrayList<Picture>();
 
 
     @Override
@@ -48,7 +46,24 @@ public class PageActivity extends BaseActivity {
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT , LinearLayout.LayoutParams.WRAP_CONTENT );
             layoutParams.setMargins(10,10,10,10);
             linearLayout.addView(imageView, layoutParams);
+
+            final int finalI = i;
+            imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("pictures", mListPictures);
+                    bundle.putInt("position", finalI);
+
+                    android.app.FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                    SlideshowDialogFragment mFragmentZoom = SlideshowDialogFragment.newInstance();
+                    mFragmentZoom.setArguments(bundle);
+                    mFragmentZoom.show(fragmentTransaction, "slideshow");
+                }
+            });
         }
+
+
         scrollView.addView(linearLayout,pageLayoutParams);
     }
 
