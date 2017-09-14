@@ -24,6 +24,7 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.lpiem_lyon1.comautis.Adapters.DrawerAdapter;
+import com.lpiem_lyon1.comautis.Adapters.GalleryAdapter;
 import com.lpiem_lyon1.comautis.Database.LocalDataBase;
 import com.lpiem_lyon1.comautis.Database.SQLDataBase;
 import com.lpiem_lyon1.comautis.Models.DrawerItem;
@@ -126,6 +127,9 @@ public class BaseActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 if (position == 0){
                     Intent intent = new Intent(getBaseContext(),ChooseChildActivity.class);
+                    startActivity(intent);
+                } else if (position == 1){
+                    Intent intent = new Intent(getBaseContext(), GalleryActivity.class);
                     startActivity(intent);
                 }
             }
