@@ -8,11 +8,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v4.content.SharedPreferencesCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -24,15 +20,12 @@ import android.widget.FrameLayout;
 import android.widget.ListView;
 
 import com.lpiem_lyon1.comautis.Adapters.DrawerAdapter;
-import com.lpiem_lyon1.comautis.Adapters.GalleryAdapter;
 import com.lpiem_lyon1.comautis.Database.LocalDataBase;
 import com.lpiem_lyon1.comautis.Database.SQLDataBase;
 import com.lpiem_lyon1.comautis.Models.DrawerItem;
-import com.lpiem_lyon1.comautis.R;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Manifest;
 
 public class BaseActivity extends AppCompatActivity {
 
@@ -72,17 +65,6 @@ public class BaseActivity extends AppCompatActivity {
 
         thread.start();
 
-        /*
-        if(ContextCompat.checkSelfPermission(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-
-            if(ActivityCompat.shouldShowRequestPermissionRationale(this, android.Manifest.permission.WRITE_EXTERNAL_STORAGE)){
-
-            } else {
-                ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE);
-            }
-        }
-        */
-
         SQLiteDatabase mComAutisDB = openOrCreateDatabase("ComAutisDB",MODE_PRIVATE,null);
 
         myDB = new SQLDataBase(getApplicationContext());
@@ -101,7 +83,7 @@ public class BaseActivity extends AppCompatActivity {
         /**
          * {@link FrameLayout} to inflate the child's view. We could also use a {@link android.view.ViewStub}
          */
-        FrameLayout activityContainer = (FrameLayout) fullLayout.findViewById(R.id.activity_content);
+        FrameLayout activityContainer = fullLayout.findViewById(R.id.activity_content);
         getLayoutInflater().inflate(layoutResID, activityContainer, true);
 
         /**
@@ -110,8 +92,8 @@ public class BaseActivity extends AppCompatActivity {
          */
         super.setContentView(fullLayout);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        navigationView = (ListView) findViewById(R.id.navigationView);
+        toolbar = findViewById(R.id.toolbar);
+        navigationView = findViewById(R.id.navigationView);
 
         //init drawer menu item
         List<DrawerItem> mDrawerItemList = new ArrayList<>();

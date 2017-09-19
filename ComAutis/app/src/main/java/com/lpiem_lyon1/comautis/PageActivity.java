@@ -25,7 +25,7 @@ public class PageActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_page);
-        LinearLayout pageLayout = (LinearLayout)findViewById(R.id.linearLayoutPage);
+        LinearLayout pageLayout = findViewById(R.id.linearLayoutPage);
         LinearLayout.LayoutParams pageLayoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT , LinearLayout.LayoutParams.MATCH_PARENT );
 
         if (getIntent() != null) {

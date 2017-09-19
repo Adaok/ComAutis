@@ -1,13 +1,11 @@
 package com.lpiem_lyon1.comautis.Adapters;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -55,9 +53,9 @@ public class GridPicturesAdapter extends BaseAdapter{
             layout = (RelativeLayout)convertView;
         }
 
-        ImageView imageViewPicture = (ImageView) layout.findViewById(R.id.grid_item_image);
-        ImageView imageSelected = (ImageView) layout.findViewById(R.id.selected_pictures);
-        TextView textViewPictureName = (TextView) layout.findViewById(R.id.grid_item_name);
+        ImageView imageViewPicture = layout.findViewById(R.id.grid_item_image);
+        ImageView imageSelected = layout.findViewById(R.id.selected_pictures);
+        TextView textViewPictureName = layout.findViewById(R.id.grid_item_name);
 
         imageViewPicture.setImageBitmap(mListPictures.get(position).getBitmap());
         if(mIsSelected.get(position))

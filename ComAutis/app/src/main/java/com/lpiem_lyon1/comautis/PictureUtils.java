@@ -6,7 +6,6 @@ import android.graphics.Matrix;
 import android.os.Environment;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by alexislp on 12/01/16.
@@ -14,12 +13,6 @@ import java.io.IOException;
 public class PictureUtils {
 
     public static void createPictureDirectory(){
-        String folder_pictures = "ComAutisPictures";
-
-        //File dir = new File(Environment.DIRECTORY_PICTURES, folder_pictures);
-        //if (!dir.exists()){
-        //    dir.mkdir();
-        //}
 
         File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"ComAutis");
         directory.mkdirs();

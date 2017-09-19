@@ -3,12 +3,8 @@ package com.lpiem_lyon1.comautis;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -23,9 +19,10 @@ import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Page;
 
-import io.fabric.sdk.android.Fabric;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.fabric.sdk.android.Fabric;
 
 public class ChooseChildActivity extends BaseActivity {
     public static final String EXTRA_CHILD_ID = "child_id";
@@ -44,7 +41,7 @@ public class ChooseChildActivity extends BaseActivity {
         getSupportActionBar().setTitle(R.string.choose_child);
         PictureUtils.createPictureDirectory();
 
-        mChildListView = (ListView) findViewById(R.id.lv_child);
+        mChildListView = findViewById(R.id.lv_child);
 
         //init list child item
         loadChild();
@@ -84,7 +81,7 @@ public class ChooseChildActivity extends BaseActivity {
                                 mLocalDb.deletePageByChild(idChildTarget, null);
                             }
                             mLocalDb.deleteChildById(idChildTarget, null);
-                        Toast.makeText(getApplicationContext(), "Child deleted",
+                        Toast.makeText(getApplicationContext(), R.string.toast_childdeleted,
                                     Toast.LENGTH_SHORT).show();
                             loadChild();
                     }
@@ -93,7 +90,7 @@ public class ChooseChildActivity extends BaseActivity {
                 mDeleteBuilder.setNegativeButton(R.string.btn_ad_negative, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // User pressed No button.
-                        Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.toast_cancel, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -104,7 +101,7 @@ public class ChooseChildActivity extends BaseActivity {
             }
         });
 
-        FloatingActionButton fabAddChild = (FloatingActionButton) findViewById(R.id.btn_add_child);
+        FloatingActionButton fabAddChild = findViewById(R.id.btn_add_child);
         fabAddChild.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -118,7 +115,7 @@ public class ChooseChildActivity extends BaseActivity {
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(ChooseChildActivity.this);
                 //Associate the view to the builder
                 mBuilder.setView(dialogAddLayout);
-                etNameChild = (EditText) dialogAddLayout.findViewById(R.id.et_ad_child_name);
+                etNameChild = dialogAddLayout.findViewById(R.id.et_ad_child_name);
 
                 //Setting Buttons Yes or No
                 // Setting Positive "Yes" Button
@@ -132,11 +129,11 @@ public class ChooseChildActivity extends BaseActivity {
                             Child myChild = new Child();
                             myChild.setName(nameChild);
                             mLocalDb.insertChild(myChild, null);
-                            Toast.makeText(getApplicationContext(), "Child created",
+                            Toast.makeText(getApplicationContext(), R.string.toast_child_created,
                                     Toast.LENGTH_SHORT).show();
                             loadChild();
                         } else {
-                            Toast.makeText(getApplicationContext(), "Retry and please give a name",
+                            Toast.makeText(getApplicationContext(), R.string.toast_retry_creation,
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -145,7 +142,7 @@ public class ChooseChildActivity extends BaseActivity {
                 mBuilder.setNegativeButton(R.string.btn_ad_negative, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // User pressed No button.
-                        Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.toast_cancel, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -188,7 +185,7 @@ public class ChooseChildActivity extends BaseActivity {
         mLocalDb.requestPageByChild(idChildTarget, new RequestCallback() {
             @Override
             public void onResult(List<? extends Model> entities) {
-                List listPageInChild = (List<Page>) entities;
+                List listPageInChild = entities;
             }
 
             @Override

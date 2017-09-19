@@ -8,14 +8,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.lpiem_lyon1.comautis.Adapters.GalleryAdapter;
-import com.lpiem_lyon1.comautis.Database.RequestCallback;
 import com.lpiem_lyon1.comautis.Fragment.SlideshowDialogFragment;
-import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Picture;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 public class GalleryActivity extends BaseActivity {
 
@@ -32,7 +29,7 @@ public class GalleryActivity extends BaseActivity {
 
         fetchPictures();
 
-        getSupportActionBar().setTitle("Gallery");
+        getSupportActionBar().setTitle(R.string.library);
         mRecyclerView = findViewById(R.id.recyclerGridView);
         mAdapter = new GalleryAdapter(mPicturesList, this.getApplicationContext());
 
@@ -72,32 +69,5 @@ public class GalleryActivity extends BaseActivity {
             picture.setBitmap(PictureUtils.getBitmapFromPath(picture.getPicturePath()));
             mPicturesList.add(picture);
         }
-
-
-
-        /*
-        mLocalDb.requestPicture(new RequestCallback() {
-            @Override
-            public void onResult(List<? extends Model> entities) {
-                mPicturesList.clear();
-                for (int i = 0; i < entities.size(); i++){
-                    mPicturesList.add((Picture) entities.get(i));
-                }
-            }
-
-            @Override
-            public void onError(Throwable error) {
-
-            }
-        });
-
-        int galleryPictureSize = mPicturesList.size();
-        */
-        /*
-        for (int i = 0; i < galleryPictureSize; i++) {
-            Picture picture = mPicturesList.get(i);
-            picture.setBitmap(PictureUtils.getBitmapFromPath(picture.getPicturePath()));
-        }
-        */
     }
 }

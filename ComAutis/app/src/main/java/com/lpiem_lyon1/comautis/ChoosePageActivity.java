@@ -9,9 +9,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,7 +22,6 @@ import com.lpiem_lyon1.comautis.Database.RequestCallback;
 import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Page;
 
-import java.security.Permission;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +46,7 @@ public class ChoosePageActivity extends BaseActivity {
             }
         }
 
-        mPageListView = (ListView) findViewById(R.id.lv_pages);
+        mPageListView = findViewById(R.id.lv_pages);
 
         loadPages();
 
@@ -84,7 +81,7 @@ public class ChoosePageActivity extends BaseActivity {
                         // User pressed YES button.
                         String idPageTarget = mListPage.get(position).getId();
                         mLocalDb.deletePageById(idPageTarget, null);
-                        Toast.makeText(getApplicationContext(), "Page deleted",
+                        Toast.makeText(getApplicationContext(), R.string.toast_pagedeleted,
                                 Toast.LENGTH_SHORT).show();
                         loadPages();
                     }
@@ -93,7 +90,7 @@ public class ChoosePageActivity extends BaseActivity {
                 mDeleteBuilder.setNegativeButton(R.string.btn_ad_negative, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
                         // User pressed No button.
-                        Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(), R.string.toast_cancel, Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -105,7 +102,7 @@ public class ChoosePageActivity extends BaseActivity {
         });
 
 
-        FloatingActionButton fabAddPage = (FloatingActionButton) findViewById(R.id.fab_create_page);
+        FloatingActionButton fabAddPage = findViewById(R.id.fab_create_page);
         fabAddPage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,7 +117,7 @@ public class ChoosePageActivity extends BaseActivity {
                     AlertDialog.Builder mBuilder = new AlertDialog.Builder(ChoosePageActivity.this);
                     //Associate the view to the builder
                     mBuilder.setView(dialogAddLayout);
-                    etNamePage = (EditText) dialogAddLayout.findViewById(R.id.et_ad_page_name);
+                    etNamePage = dialogAddLayout.findViewById(R.id.et_ad_page_name);
 
                     //Setting Buttons Yes or No
                     // Setting Positive "Yes" Button
@@ -138,12 +135,11 @@ public class ChoosePageActivity extends BaseActivity {
                                 myPage.setId(Long.toString(id));
                                 Intent intent = new Intent(getBaseContext() , ChoosePictureActivity.class);
                                 intent.putExtra(EXTRA_PAGE_ID, myPage.getId());
-                                Toast.makeText(getApplicationContext(), "Page created",
+                                Toast.makeText(getApplicationContext(), R.string.toast_creationpage,
                                         Toast.LENGTH_SHORT).show();
-                                //loadPages();
                                 startActivity(intent);
                             } else {
-                                Toast.makeText(getApplicationContext(), "Retry and please give a name",
+                                Toast.makeText(getApplicationContext(), R.string.toast_retry_creation,
                                         Toast.LENGTH_SHORT).show();
                             }
                         }
@@ -152,7 +148,7 @@ public class ChoosePageActivity extends BaseActivity {
                     mBuilder.setNegativeButton(R.string.btn_ad_negative, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // User pressed No button.
-                            Toast.makeText(getApplicationContext(), "Cancelled", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.toast_cancel, Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -163,9 +159,9 @@ public class ChoosePageActivity extends BaseActivity {
                     final Intent intentPerms = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", getPackageName(), null));
                     intentPerms.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     AlertDialog.Builder builderPerms = new AlertDialog.Builder(ChoosePageActivity.this);
-                    builderPerms.setMessage("Modifiez les permissions pour continuer")
+                    builderPerms.setMessage(R.string.tv_permissions_redirections)
                             .setCancelable(false)
-                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            .setPositiveButton(R.string.btn_ad_positive, new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
                                     startActivity(intentPerms);
                                 }
