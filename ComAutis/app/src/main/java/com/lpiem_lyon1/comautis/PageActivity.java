@@ -42,7 +42,7 @@ public class PageActivity extends BaseActivity {
 
         for (int i = 0; i < mListPictures.size(); i++) {
             ImageView imageView = new ImageView(this);
-            Glide.with(this).load(new File(mListPictures.get(i).getPicturePath())).asBitmap().into(imageView);
+            Glide.with(this).load(new File(mListPictures.get(i).getPicturePath())).asBitmap().placeholder(R.mipmap.ic_missing_picture).into(imageView);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT , LinearLayout.LayoutParams.WRAP_CONTENT );
             layoutParams.setMargins(10,10,10,10);
             linearLayout.addView(imageView, layoutParams);
@@ -83,8 +83,7 @@ public class PageActivity extends BaseActivity {
 
         int pagePictureSize = mListPictures.size();
         for(int i = 0 ; i < pagePictureSize ; i++){
-                    Picture pic = mListPictures.get(i);
-                    pic.setBitmap(PictureUtils.getBitmapFromPath(pic.getPicturePath()));
+            Picture pic = mListPictures.get(i);
         }
     }
 }

@@ -5,6 +5,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Environment;
 
+import com.lpiem_lyon1.comautis.Models.Picture;
+
 import java.io.File;
 
 /**
@@ -46,5 +48,13 @@ public class PictureUtils {
                 bm, 0, 0, width, height, matrix, false);
         bm.recycle();
         return resizedBitmap;
+    }
+
+    public static boolean pictureAvailable(Picture picture){
+        File file = new File(picture.getPicturePath());
+        if (file.exists())
+            return true;
+        else
+            return false;
     }
 }

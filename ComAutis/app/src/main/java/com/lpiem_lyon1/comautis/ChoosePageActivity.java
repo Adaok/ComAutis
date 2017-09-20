@@ -155,7 +155,6 @@ public class ChoosePageActivity extends BaseActivity {
                     //Creation AlertDialog and associate to the builder showed.
                     AlertDialog alertDialogCreatePage = mBuilder.show();
                 } else {
-                    //todo go perms params.
                     final Intent intentPerms = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS, Uri.fromParts("package", getPackageName(), null));
                     intentPerms.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     AlertDialog.Builder builderPerms = new AlertDialog.Builder(ChoosePageActivity.this);
