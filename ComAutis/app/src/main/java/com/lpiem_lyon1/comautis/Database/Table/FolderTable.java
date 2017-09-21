@@ -3,7 +3,6 @@ package com.lpiem_lyon1.comautis.Database.Table;
 import android.content.ContentValues;
 import android.database.Cursor;
 
-import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Folder;
 
 /**

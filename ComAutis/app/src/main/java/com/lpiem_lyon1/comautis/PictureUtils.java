@@ -5,8 +5,9 @@ import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
 import android.os.Environment;
 
+import com.lpiem_lyon1.comautis.Models.Picture;
+
 import java.io.File;
-import java.io.IOException;
 
 /**
  * Created by alexislp on 12/01/16.
@@ -14,12 +15,6 @@ import java.io.IOException;
 public class PictureUtils {
 
     public static void createPictureDirectory(){
-        String folder_pictures = "ComAutisPictures";
-
-        //File dir = new File(Environment.DIRECTORY_PICTURES, folder_pictures);
-        //if (!dir.exists()){
-        //    dir.mkdir();
-        //}
 
         File directory = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+File.separator+"ComAutis");
         directory.mkdirs();
@@ -53,5 +48,13 @@ public class PictureUtils {
                 bm, 0, 0, width, height, matrix, false);
         bm.recycle();
         return resizedBitmap;
+    }
+
+    public static boolean pictureAvailable(Picture picture){
+        File file = new File(picture.getPicturePath());
+        if (file.exists())
+            return true;
+        else
+            return false;
     }
 }

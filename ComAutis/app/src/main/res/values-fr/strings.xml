@@ -41,6 +41,7 @@
     <string name="text_slide4">ComAutis a besoin d\'image dans ses fiches, celle-ci devront aller dans le dossier ComAutis qui a été créé à l\'instant à la racine de votre appareil.</string>
     <string name="text_slide5">Pour ajouter une image, rien de bien compliquer : connectez votre smartphone à votre PC, puis allez dans le dossier ComAutis de votre smartphone avec l\'explorateur. C\'est ici qu\'il faut mettre les images.</string>
     <string name="text_slide6">Si vous avez un Mac, vous devrez télécharger un logiciel spécifique, nous vous recommandons Android File Transfer.</string>
+    <string name="tv_permissions_redirections">Modifiez les permissions pour continuer</string>
 
 
 </resources>

@@ -51,9 +51,9 @@ public class ListPageAdapter extends BaseAdapter{
             layout = (RelativeLayout)convertView;
         }
 
-        TextView textViewNamePage = (TextView) layout.findViewById(R.id.tv_page_list_item);
-        ImageView iconViewPage = (ImageView) layout.findViewById(R.id.icon_page_list_item);
-        ImageView iconIsFavoritePage = (ImageView) layout.findViewById(R.id.icon_favorite_page);
+        TextView textViewNamePage = layout.findViewById(R.id.tv_page_list_item);
+        ImageView iconViewPage = layout.findViewById(R.id.icon_page_list_item);
+        ImageView iconIsFavoritePage = layout.findViewById(R.id.icon_favorite_page);
 
         textViewNamePage.setText(mPageListItem.get(position).getName());
         iconViewPage.setImageResource(R.drawable.ic_page);

@@ -42,9 +42,9 @@ public class SlideshowDialogFragment extends DialogFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_image_slider, container, false);
-        viewPager= (ViewPager) view.findViewById(R.id.viewpager);
-        lblCount = (TextView) view.findViewById(R.id.lbl_count);
-        lblTitle = (TextView) view.findViewById(R.id.title);
+        viewPager= view.findViewById(R.id.viewpager);
+        lblCount = view.findViewById(R.id.lbl_count);
+        lblTitle = view.findViewById(R.id.title);
 
         pictures = (ArrayList<Picture>) getArguments().getSerializable("pictures");
         selectedPosition = getArguments().getInt("position");
@@ -116,7 +116,7 @@ public class SlideshowDialogFragment extends DialogFragment {
             layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(R.layout.image_fullscreen_preview, container, false);
 
-            ImageView imageViewPreview = (ImageView) view.findViewById(R.id.iv_fullscreen_viewer);
+            ImageView imageViewPreview = view.findViewById(R.id.iv_fullscreen_viewer);
 
             Picture picture = pictures.get(position);
 
@@ -138,7 +138,7 @@ public class SlideshowDialogFragment extends DialogFragment {
 
         @Override
         public boolean isViewFromObject(View view, Object obj) {
-            return view == ((View) obj);
+            return view == obj;
         }
 
         @Override

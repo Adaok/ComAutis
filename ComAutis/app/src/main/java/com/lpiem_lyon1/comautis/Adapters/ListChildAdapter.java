@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -52,9 +51,9 @@ public class ListChildAdapter extends BaseAdapter {
             layout = (RelativeLayout)convertView;
         }
 
-        TextView textViewNameChild = (TextView) layout.findViewById(R.id.tv_child_list_item);
-        ImageView iconViewChild = (ImageView) layout.findViewById(R.id.icon_child_list_item);
-        ImageView iconIsFavoriteChild = (ImageView) layout.findViewById(R.id.icon_favorite_child);
+        TextView textViewNameChild = layout.findViewById(R.id.tv_child_list_item);
+        ImageView iconViewChild = layout.findViewById(R.id.icon_child_list_item);
+        ImageView iconIsFavoriteChild = layout.findViewById(R.id.icon_favorite_child);
 
         textViewNameChild.setText(mChildListItem.get(position).getName());
         iconViewChild.setImageResource(R.drawable.ic_child_face);

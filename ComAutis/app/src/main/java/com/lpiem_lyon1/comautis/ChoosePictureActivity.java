@@ -36,7 +36,7 @@ public class ChoosePictureActivity extends BaseActivity {
             pageId = getIntent().getStringExtra(ChoosePageActivity.EXTRA_PAGE_ID);
         }
 
-        mGridPictures = (GridView)findViewById(R.id.grid_choose_pictures);
+        mGridPictures = findViewById(R.id.grid_choose_pictures);
 
         File files[] = PictureUtils.getPictures();
         int size = files.length;

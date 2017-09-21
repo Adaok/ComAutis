@@ -44,5 +44,13 @@
     <string name="text_slide4">Documents in ComAutis need to contain pictures, which are stored in the ComAutis folder that was just created on your device.</string>
     <string name="text_slide5">Here are the simple steps to add a picture: connect your smartphone to your computer, then use the file browser to access the ComAutis folder on your smartphone. This is the folder where you can add pictures.</string>
     <string name="text_slide6">If you are using a Mac, you need to download a specific software. We recommend Android File Transfer.</string>
+    <string name="toast_cancel">Cancelled</string>
+    <string name="toast_child_created">Child created</string>
+    <string name="toast_retry_creation">Retry and please give a name</string>
+    <string name="toast_childdeleted">Child deleted</string>
+    <string name="tv_permissions_redirections">Modifiez les permissions pour continuer</string>
+    <string name="toast_creationpage">Page created</string>
+    <string name="toast_pagedeleted">Page deleted</string>
+
 
 </resources>
