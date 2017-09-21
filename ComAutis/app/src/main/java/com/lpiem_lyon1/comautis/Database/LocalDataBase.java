@@ -1,5 +1,6 @@
 package com.lpiem_lyon1.comautis.Database;
 
+import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -494,6 +495,114 @@ public class LocalDataBase implements ILocalDataBase {
     @Override
     public void deletePictureInPage(String id, RequestCallback callback) {
         //TODO
+    }
+
+    //endregion
+
+    //region UPDATE
+
+    @Override
+    public void updateChildById(Child child, RequestCallback callback) {
+        String id = child.getId();
+        if (id != "" && id != null){
+            Cursor cursor = mSQLiteDatabase.query(ChildTable.TABLE_NAME, null, ChildTable.KEY_ID + "=?", new String[]{id}, null, null, null, null);
+            if(cursor != null){
+                if(cursor.moveToFirst()){
+                    ContentValues argsUpdate = new ChildTable().getContentValues(child);
+                    int valueReturn = mSQLiteDatabase.update(ChildTable.TABLE_NAME, argsUpdate, ChildTable.KEY_ID + "=?", new String[]{id});
+                    cursor.close();
+                    if (valueReturn != 1){
+                        callback.onError(new Error("Troubles in database, fail"));
+                    }
+                    return;
+                }
+            }
+            cursor.close();
+            if (callback != null){
+                callback.onError(new Error("Child not update, fail"));
+            }
+        }
+        if (callback != null){
+            callback.onError(new IllegalArgumentException("id is null"));
+        }
+    }
+
+    @Override
+    public void updateFolderById(Folder folder, RequestCallback callback) {
+        String id = folder.getId();
+        if (id !="" && id != null){
+            Cursor cursor = mSQLiteDatabase.query(FolderTable.TABLE_NAME, null, FolderTable.KEY_ID + "=?", new String[]{id}, null, null, null, null);
+            if(cursor != null){
+                if(cursor.moveToFirst()){
+                    ContentValues argsUpdate = new  FolderTable().getContentValues(folder);
+                    int valueReturn = mSQLiteDatabase.update(FolderTable.TABLE_NAME, argsUpdate, FolderTable.KEY_ID + "=?", new String[]{id});
+                    cursor.close();
+                    if( valueReturn != 1){
+                        callback.onError(new Error("Troubles in database, fail"));
+                    }
+                    return;
+                }
+            }
+            cursor.close();
+            if (callback != null){
+                callback.onError(new Error("Folder not update, fail"));
+            }
+        }
+        if(callback != null){
+            callback.onError(new IllegalArgumentException("id is null"));
+        }
+    }
+
+    @Override
+    public void updatePageById(Page page, RequestCallback callback) {
+        String id = page.getId();
+        if (id !="" && id != null){
+            Cursor cursor = mSQLiteDatabase.query(PageTable.TABLE_NAME, null, PageTable.KEY_ID + "=?", new String[]{id}, null, null, null);
+            if (cursor != null){
+                if (cursor.moveToFirst()){
+                    ContentValues argsUpdate = new PageTable().getContentValues(page);
+                    int valueReturn = mSQLiteDatabase.update(PageTable.TABLE_NAME, argsUpdate, PageTable.KEY_ID + "=?", new String[]{id});
+                    cursor.close();
+                    if (valueReturn != 1){
+                        callback.onError(new Error("Troubles in database, fail"));
+                    }
+                    return;
+                }
+            }
+            cursor.close();
+            if (callback != null){
+                callback.onError(new Error("Page not update, fail"));
+            }
+        }
+        if (callback != null){
+            callback.onError(new IllegalArgumentException("id is null"));
+        }
+    }
+
+    @Override
+    public void updatePictureById(Picture picture, RequestCallback callback) {
+        String id = picture.getId();
+        if (id != "" && id != null){
+            Cursor cursor = mSQLiteDatabase.query(PictureTable.TABLE_NAME, null, PictureTable.KEY_ID + "=?", new String[]{id}, null, null, null);
+            if (cursor != null){
+                if (cursor.moveToFirst()){
+                    ContentValues argsUpdate = new PictureTable().getContentValues(picture);
+                    int valueReturn = mSQLiteDatabase.update(PictureTable.TABLE_NAME, argsUpdate, PictureTable.KEY_ID + "=?", new String[]{id});
+                    cursor.close();
+                    if (valueReturn != 1){
+                        callback.onError(new Error("Troubles in database, fail"));
+                    }
+                    return;
+                }
+            }
+            cursor.close();
+            if (callback != null){
+                callback.onError(new Error("Picture not update, fail"));
+            }
+        }
+        if (callback != null){
+            callback.onError(new IllegalArgumentException("id is null"));
+        }
     }
 
     //endregion
