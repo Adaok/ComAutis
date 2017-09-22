@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lpiem_lyon1.comautis.Database.LocalDataBase;
+import com.lpiem_lyon1.comautis.Interface.IAdapterCommunication;
 import com.lpiem_lyon1.comautis.Models.Page;
 import com.lpiem_lyon1.comautis.R;
 
@@ -24,11 +25,13 @@ public class ListPageAdapter extends BaseAdapter{
     List<Page> mPageListItem;
     Context mContext;
     protected LocalDataBase mLocalDataBase;
+    private final IAdapterCommunication listener;
 
-    public ListPageAdapter(List<Page> mPageListItem, Context mContext, LocalDataBase mLocalDataBase) {
+    public ListPageAdapter(List<Page> mPageListItem, Context mContext, LocalDataBase mLocalDataBase, IAdapterCommunication listener) {
         this.mPageListItem = mPageListItem;
         this.mContext = mContext;
         this.mLocalDataBase = mLocalDataBase;
+        this.listener = listener;
     }
 
     @Override
@@ -73,6 +76,7 @@ public class ListPageAdapter extends BaseAdapter{
                     Toast.makeText(mContext, R.string.toast_no_favorite, Toast.LENGTH_SHORT).show();
                 }
                 notifyDataSetChanged();
+                listener.updateListMenu();
             }
         });
 

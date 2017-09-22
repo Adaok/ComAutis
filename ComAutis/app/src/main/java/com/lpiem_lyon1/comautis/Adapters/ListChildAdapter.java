@@ -11,6 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.lpiem_lyon1.comautis.Database.LocalDataBase;
+import com.lpiem_lyon1.comautis.Interface.IAdapterCommunication;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.R;
 
@@ -24,11 +25,13 @@ public class ListChildAdapter extends BaseAdapter {
     List<Child> mChildListItem;
     Context mContext;
     protected LocalDataBase mLocalDataBase;
+    private final IAdapterCommunication listener;
 
-    public ListChildAdapter(List<Child> mChildListItem, Context mContext, LocalDataBase localDataBase) {
+    public ListChildAdapter(List<Child> mChildListItem, Context mContext, LocalDataBase localDataBase, IAdapterCommunication listener) {
         this.mChildListItem = mChildListItem;
         this.mContext = mContext;
         this.mLocalDataBase = localDataBase;
+        this.listener = listener;
     }
 
     @Override
@@ -73,6 +76,7 @@ public class ListChildAdapter extends BaseAdapter {
                     Toast.makeText(mContext, R.string.toast_no_favorite, Toast.LENGTH_SHORT).show();
                 }
                 notifyDataSetChanged();
+                listener.updateListMenu();
             }
         });
 
