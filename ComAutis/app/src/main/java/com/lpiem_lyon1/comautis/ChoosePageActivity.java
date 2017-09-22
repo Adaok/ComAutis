@@ -189,7 +189,7 @@ public class ChoosePageActivity extends BaseActivity {
         });
 
         //init list view with list pages items
-        ListPageAdapter listPageAdapter = new ListPageAdapter(mListPage, getBaseContext());
+        ListPageAdapter listPageAdapter = new ListPageAdapter(mListPage, getBaseContext(), mLocalDb);
         mPageListView.setAdapter(listPageAdapter);
     }
 

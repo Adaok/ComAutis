@@ -15,5 +15,7 @@
     <string name="tv_header_ad_add_child">Aggiungere un nuovo bambino</string>
     <string name="btn_ad_positive">Ok</string>
     <string name="btn_ad_negative">Cancellare</string>
+    <string name="toast_favorite">Set in favorite</string>
+    <string name="toast_no_favorite">Unset in favorite</string>
 
 </resources>

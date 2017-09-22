@@ -169,13 +169,12 @@ public class ChooseChildActivity extends BaseActivity {
         });
 
         //init list view with list child items
-        ListChildAdapter listChildAdapter = new ListChildAdapter(mListChild, getBaseContext());
+        ListChildAdapter listChildAdapter = new ListChildAdapter(mListChild, getBaseContext(), mLocalDb);
         mChildListView.setAdapter(listChildAdapter);
     }
 
     @Override
     protected void onPause() {
-
         super.onPause();
         finish();
     }

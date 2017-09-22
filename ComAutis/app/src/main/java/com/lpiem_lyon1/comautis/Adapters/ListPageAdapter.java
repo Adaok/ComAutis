@@ -8,7 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.lpiem_lyon1.comautis.Database.LocalDataBase;
 import com.lpiem_lyon1.comautis.Models.Page;
 import com.lpiem_lyon1.comautis.R;
 
@@ -21,10 +23,12 @@ public class ListPageAdapter extends BaseAdapter{
 
     List<Page> mPageListItem;
     Context mContext;
+    protected LocalDataBase mLocalDataBase;
 
-    public ListPageAdapter(List<Page> mPageListItem, Context mContext) {
+    public ListPageAdapter(List<Page> mPageListItem, Context mContext, LocalDataBase mLocalDataBase) {
         this.mPageListItem = mPageListItem;
         this.mContext = mContext;
+        this.mLocalDataBase = mLocalDataBase;
     }
 
     @Override
@@ -43,7 +47,7 @@ public class ListPageAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         RelativeLayout layout;
         if (convertView == null){
             layout = (RelativeLayout) LayoutInflater.from(mContext).inflate(R.layout.choose_page_item_row, null);
@@ -55,9 +59,31 @@ public class ListPageAdapter extends BaseAdapter{
         ImageView iconViewPage = layout.findViewById(R.id.icon_page_list_item);
         ImageView iconIsFavoritePage = layout.findViewById(R.id.icon_favorite_page);
 
+        layout.findViewById(R.id.icon_favorite_page).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Page page = mPageListItem.get(position);
+                if (page.isFavorite() == 0){
+                    page.setIsFavorite(1);
+                    mLocalDataBase.updatePageById(page, null);
+                    Toast.makeText(mContext, R.string.toast_favorite, Toast.LENGTH_SHORT).show();
+                } else if (page.isFavorite() == 1){
+                    page.setIsFavorite(0);
+                    mLocalDataBase.updatePageById(page, null);
+                    Toast.makeText(mContext, R.string.toast_no_favorite, Toast.LENGTH_SHORT).show();
+                }
+                notifyDataSetChanged();
+            }
+        });
+
         textViewNamePage.setText(mPageListItem.get(position).getName());
         iconViewPage.setImageResource(R.drawable.ic_page);
-        iconIsFavoritePage.setImageResource(R.drawable.ic_no_favorite);
+
+        if (mPageListItem.get(position).isFavorite() == 0) {
+            iconIsFavoritePage.setImageResource(R.drawable.ic_no_favorite);
+        } else if (mPageListItem.get(position).isFavorite() == 1) {
+            iconIsFavoritePage.setImageResource(R.drawable.ic_favorite);
+        }
 
         return layout;
     }
