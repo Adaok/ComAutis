@@ -7,10 +7,19 @@ public class DrawerItem {
 
     private String mName;
     private int mIconId;
+    private String mId;
+    private TypeItem mTypeItem;
 
     public DrawerItem(String name, int iconId) {
         this.mIconId = iconId;
         this.mName = name;
+    }
+
+    public DrawerItem(String mName, int mIconId, String mId, TypeItem mTypeItem) {
+        this.mName = mName;
+        this.mIconId = mIconId;
+        this.mId = mId;
+        this.mTypeItem = mTypeItem;
     }
 
     public int getIconId() {
@@ -27,5 +36,27 @@ public class DrawerItem {
 
     public void setName(String name) {
         this.mName = name;
+    }
+
+    public String getmId() {
+        return mId;
+    }
+
+    public void setmId(String mId) {
+        this.mId = mId;
+    }
+
+    public TypeItem getmTypeItem() {
+        return mTypeItem;
+    }
+
+    public void setmTypeItem(TypeItem mTypeItem) {
+        this.mTypeItem = mTypeItem;
+    }
+
+    public static enum TypeItem {
+        OTHER,
+        CHILD,
+        PAGE
     }
 }

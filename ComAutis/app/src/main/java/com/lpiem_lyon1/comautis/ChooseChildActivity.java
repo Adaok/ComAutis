@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.crashlytics.android.Crashlytics;
 import com.lpiem_lyon1.comautis.Adapters.ListChildAdapter;
 import com.lpiem_lyon1.comautis.Database.RequestCallback;
+import com.lpiem_lyon1.comautis.Interface.IAdapterCommunication;
 import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Page;
@@ -24,7 +25,7 @@ import java.util.List;
 
 import io.fabric.sdk.android.Fabric;
 
-public class ChooseChildActivity extends BaseActivity {
+public class ChooseChildActivity extends BaseActivity implements IAdapterCommunication {
     public static final String EXTRA_CHILD_ID = "child_id";
 
     private ListView mChildListView;
@@ -169,13 +170,12 @@ public class ChooseChildActivity extends BaseActivity {
         });
 
         //init list view with list child items
-        ListChildAdapter listChildAdapter = new ListChildAdapter(mListChild, getBaseContext());
+        ListChildAdapter listChildAdapter = new ListChildAdapter(mListChild, getBaseContext(), mLocalDb, this);
         mChildListView.setAdapter(listChildAdapter);
     }
 
     @Override
     protected void onPause() {
-
         super.onPause();
         finish();
     }
@@ -196,4 +196,9 @@ public class ChooseChildActivity extends BaseActivity {
         return listPageInChild.size();
     }
 
+    @Override
+    public void updateListMenu() {
+        loadFavoritesDrawerItem();
+        mDrawerAdapter.notifyDataSetChanged();
+    }
 }

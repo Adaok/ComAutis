@@ -21,8 +21,12 @@ import android.widget.ListView;
 
 import com.lpiem_lyon1.comautis.Adapters.DrawerAdapter;
 import com.lpiem_lyon1.comautis.Database.LocalDataBase;
+import com.lpiem_lyon1.comautis.Database.RequestCallback;
 import com.lpiem_lyon1.comautis.Database.SQLDataBase;
+import com.lpiem_lyon1.comautis.Models.Child;
 import com.lpiem_lyon1.comautis.Models.DrawerItem;
+import com.lpiem_lyon1.comautis.Models.Model;
+import com.lpiem_lyon1.comautis.Models.Page;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +40,8 @@ public class BaseActivity extends AppCompatActivity {
     private int selectedNavItemId;
     protected SQLDataBase myDB;
     protected LocalDataBase mLocalDb;
+    protected DrawerAdapter mDrawerAdapter;
+    protected List<DrawerItem> mDrawerItemList = new ArrayList<>();
 
     public static final int MY_PERMISSION_REQUEST_WRITE_EXTERNAL_STORAGE = 1;
 
@@ -96,13 +102,11 @@ public class BaseActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigationView);
 
         //init drawer menu item
-        List<DrawerItem> mDrawerItemList = new ArrayList<>();
-        mDrawerItemList.add(new DrawerItem(getString(R.string.child_list),R.drawable.ic_child_face));
-        mDrawerItemList.add(new DrawerItem(getString(R.string.library),R.drawable.ic_library));
+        loadFavoritesDrawerItem();
 
         //init list view with menu items
-        DrawerAdapter drawerAdapter = new DrawerAdapter(getBaseContext() , mDrawerItemList);
-        navigationView.setAdapter(drawerAdapter);
+        mDrawerAdapter = new DrawerAdapter(getBaseContext() , mDrawerItemList);
+        navigationView.setAdapter(mDrawerAdapter);
 
         navigationView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -113,6 +117,8 @@ public class BaseActivity extends AppCompatActivity {
                 } else if (position == 1){
                     Intent intent = new Intent(getBaseContext(), GalleryActivity.class);
                     startActivity(intent);
+                } else {
+                    openDrawerItem(mDrawerItemList.get(position));
                 }
             }
         });
@@ -189,6 +195,72 @@ public class BaseActivity extends AppCompatActivity {
                 }
 
                 return;
+        }
+    }
+
+    public void loadFavoritesDrawerItem(){
+        mDrawerItemList.clear();
+        DrawerItem listChildActivity = new DrawerItem(getString(R.string.child_list), R.drawable.ic_child_face, null, DrawerItem.TypeItem.OTHER);
+        DrawerItem galleryActivity = new DrawerItem(getString(R.string.library), R.drawable.ic_library, null, DrawerItem.TypeItem.OTHER);
+        mDrawerItemList.add(listChildActivity);
+        mDrawerItemList.add(galleryActivity);
+
+        mLocalDb.requestChild(new RequestCallback() {
+            @Override
+            public void onResult(List<? extends Model> entities) {
+                for (int i = 0; i < entities.size(); i++){
+                    Child child = (Child) entities.get(i);
+                    if (child.isFavorite() == 1) {
+                        mDrawerItemList.add(new DrawerItem(
+                                child.getName(),
+                                R.drawable.ic_child_face,
+                                child.getId(),
+                                DrawerItem.TypeItem.CHILD
+                        ));
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable error) {
+
+            }
+        });
+
+        mLocalDb.requestPage(new RequestCallback() {
+            @Override
+            public void onResult(List<? extends Model> entities) {
+                for (int i = 0; i < entities.size(); i++){
+                    Page page = (Page) entities.get(i);
+                    if (page.isFavorite() == 1){
+                        mDrawerItemList.add(new DrawerItem(
+                                page.getName(),
+                                R.drawable.ic_page,
+                                page.getId(),
+                                DrawerItem.TypeItem.PAGE
+                        ));
+                    }
+                }
+            }
+
+            @Override
+            public void onError(Throwable error) {
+
+            }
+        });
+
+        return;
+    }
+
+    public void openDrawerItem(DrawerItem drawerItem){
+        if (drawerItem.getmTypeItem() == DrawerItem.TypeItem.CHILD){
+            Intent intentChild = new Intent(getBaseContext(), ChoosePageActivity.class);
+            intentChild.putExtra(ChooseChildActivity.EXTRA_CHILD_ID, drawerItem.getmId());
+            startActivity(intentChild);
+        } else if (drawerItem.getmTypeItem() == DrawerItem.TypeItem.PAGE){
+            Intent intentPage = new Intent(getBaseContext(), PageActivity.class);
+            intentPage.putExtra(ChoosePageActivity.EXTRA_PAGE_ID, drawerItem.getmId());
+            startActivity(intentPage);
         }
     }
 }

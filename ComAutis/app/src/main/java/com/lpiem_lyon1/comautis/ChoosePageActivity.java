@@ -19,13 +19,14 @@ import android.widget.Toast;
 
 import com.lpiem_lyon1.comautis.Adapters.ListPageAdapter;
 import com.lpiem_lyon1.comautis.Database.RequestCallback;
+import com.lpiem_lyon1.comautis.Interface.IAdapterCommunication;
 import com.lpiem_lyon1.comautis.Models.Model;
 import com.lpiem_lyon1.comautis.Models.Page;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ChoosePageActivity extends BaseActivity {
+public class ChoosePageActivity extends BaseActivity implements IAdapterCommunication {
 
     public static final String EXTRA_PAGE_ID = "pageId";
 
@@ -189,7 +190,7 @@ public class ChoosePageActivity extends BaseActivity {
         });
 
         //init list view with list pages items
-        ListPageAdapter listPageAdapter = new ListPageAdapter(mListPage, getBaseContext());
+        ListPageAdapter listPageAdapter = new ListPageAdapter(mListPage, getBaseContext(), mLocalDb, this);
         mPageListView.setAdapter(listPageAdapter);
     }
 
@@ -204,5 +205,11 @@ public class ChoosePageActivity extends BaseActivity {
     protected void onResume() {
         super.onResume();
         loadPages();
+    }
+
+    @Override
+    public void updateListMenu() {
+        loadFavoritesDrawerItem();
+        mDrawerAdapter.notifyDataSetChanged();
     }
 }
